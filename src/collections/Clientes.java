@@ -26,7 +26,8 @@ public class Clientes implements CreateReadUpdateDelete {
 		return listaClientes;
 	}
 	
-	public void imprimirClientes() {
+	@Override
+	public void imprimir() {
 		for (Cliente cliente : clientes) {
 			System.out.println(cliente.toString());
 		}
@@ -36,7 +37,13 @@ public class Clientes implements CreateReadUpdateDelete {
 	public void adicionar(Object cliente) {
 		try {
 			Cliente clienteSave = (Cliente) cliente;
-			getClientes().add(clienteSave);
+			Object clienteSearch = consultar(clienteSave.getCpf());
+				
+			if (clienteSearch instanceof String) {
+				getClientes().add(clienteSave);
+			} else {
+				System.out.println("Cliente já cadastrado anteriormente.");
+			}
 		} catch (Exception e) {
 			// e.printStackTrace();
 			throw new IllegalArgumentException("O item não é um cliente.");

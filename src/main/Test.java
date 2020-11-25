@@ -22,15 +22,15 @@ public class Test {
 		
 		Produtos p1s = new Produtos();
 		
-		Produto p1 = new Imovel(123, "Casa maneira pra caramba", "Rua das Acácias", TipoImovel.CASA);
+		Produto p1 = new Imovel("123", "Casa maneira pra caramba", "Rua das Acácias", TipoImovel.CASA);
 		
-		Produto p2 = new Veiculo(123, "Carro mais ou menos legal", "ABC-1234", 189000, "Amarelo", TipoVeiculo.CARRO);
+		Produto p2 = new Veiculo("123", "Carro mais ou menos legal", "ABC-1234", 189000, "Amarelo", TipoVeiculo.CARRO);
 		
-		p1s.adicionarProduto(p1);
+		p1s.adicionar(p1);
 		
-		p1s.adicionarProduto(p2);
+		p1s.adicionar(p2);
 		
-		p1s.imprimirProdutos();
+		p1s.imprimir();
 		
 		Clientes c1s = new Clientes();
 		
@@ -38,31 +38,31 @@ public class Test {
 		
 		c1s.adicionar(c1);
 		
-		c1s.imprimirClientes();
+		c1s.imprimir();
 		
 		Instituicoes i1s = new Instituicoes();
 		
 		Instituicao i1 = new Instituicao("010203040506", "A loja de coisas usadas", "Rua Tupi Guaraná", "einteiro@einteiro.com");
 		
-		i1s.adicionarInstituicao(i1);
+		i1s.adicionar(i1);
 		
-		i1s.imprimirInstituicoes();
+		i1s.imprimir();
 		
 		Lances l1s = new Lances();
 		
 		Lance l1 = new Lance(c1, p1, 1000.0);
 		
-		l1s.adicionarLance(l1);
+		l1s.adicionar(l1);
 		
-		l1s.imprimirLances();
+		l1s.imprimir();
 		
 		Leilao ll1 = new Leilao(p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		Leiloes ll1s = new Leiloes();
 		
-		ll1s.adicionarLeilao(ll1);
+		ll1s.adicionar(ll1);
 		
-		ll1s.imprimirLeiloes();
+		ll1s.imprimir();
 		
 		// c1s.adicionar(l1);
 		
@@ -72,19 +72,27 @@ public class Test {
 		
 		Cliente c2 = new Cliente("1", "1", "Pessoa mal intecionada", "Rua dos Químicos", "x@x.com");
 		
+		c1s.adicionar(c1);
+		
 		c1s.atualizar("1", c2);
 		
-		c1s.imprimirClientes();
+		c1s.imprimir();
 		
 		c1s.atualizar("12345678910", c2);
 		
-		c1s.imprimirClientes();
+		c1s.imprimir();
 		
 		System.out.println(c1s.remover("1"));
 		
 		System.out.println(c1s.remover("1"));
 		
-		c1s.imprimirClientes();
+		c1s.imprimir();
+		
+		Leilao ll2 = new Leilao(p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		
+		ll1s.adicionar(ll2);
+		
+		ll1s.imprimir();
 		
 	}
 	

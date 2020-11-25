@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class Imovel extends Produto {
 	
-	public Imovel(Integer matricula, String descricao, 
+	public Imovel(String matricula, String descricao, 
 				   String endereco, TipoImovel tipoImovel) {
 		super(matricula, descricao);
 		setEndereco(endereco);

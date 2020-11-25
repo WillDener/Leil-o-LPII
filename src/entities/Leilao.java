@@ -8,11 +8,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
 @Getter
 @Setter
 public class Leilao {
 	
+	private static Integer idLeilao = 0;
+	private String id;
 	private Produtos produtos;
 	private Clientes clientes;
 	private Instituicao instituicao;
@@ -21,11 +22,22 @@ public class Leilao {
 	
 	@Override
 	public String toString() {
-		return("Lista de produtos: " + produtos.toString() + " " +
+		return("ID do leilão: " + getId().toString() + " " +
+			   "Lista de produtos: " + produtos.toString() + " " +
 			   "Lista de clientes: " + clientes.toString() + " " +
 			   "Instituicao financeira responsável: " + getInstituicao().toString() + " " +
 			   "Lista de lances: " + lances.toString() + " " +
 			   "Status do leilão: " + getStatusLeilao().toString()) + ".";
+	}
+	
+	public Leilao(Produtos produtos, Clientes clientes, Instituicao instituicao, Lances lances, StatusLeilao statusLeilao) {
+		idLeilao++;
+		setId(idLeilao.toString());
+		setProdutos(produtos);
+		setClientes(clientes);
+		setInstituicao(instituicao);
+		setLances(lances);
+		setStatusLeilao(statusLeilao);
 	}
 	
 }

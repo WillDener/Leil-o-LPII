@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 public class Veiculo extends Produto {
 	
-	public Veiculo(Integer matricula, String descricao, 
-				    String placa, Integer kilometragem, String cor, TipoVeiculo tipoVeiculo) {
+	public Veiculo(String matricula, String descricao, 
+				   String placa, Integer kilometragem, String cor, TipoVeiculo tipoVeiculo) {
 		super(matricula, descricao);
 		setPlaca(placa);
 		setKilometragem(kilometragem);
