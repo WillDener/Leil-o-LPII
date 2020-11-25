@@ -36,7 +36,7 @@ public class Test {
 		
 		Cliente c1 = new Cliente("12345678910", "123456789", "Pessoa totalmente bem intecionada", "Rua da Fármacia", "email@email.com");
 		
-		c1s.adicionarCliente(c1);
+		c1s.adicionar(c1);
 		
 		c1s.imprimirClientes();
 		
@@ -63,6 +63,28 @@ public class Test {
 		ll1s.adicionarLeilao(ll1);
 		
 		ll1s.imprimirLeiloes();
+		
+		// c1s.adicionar(l1);
+		
+		System.out.println(c1s.consultar("12345678910").toString());
+		
+		System.out.println(c1s.consultar("123").toString());
+		
+		Cliente c2 = new Cliente("1", "1", "Pessoa mal intecionada", "Rua dos Químicos", "x@x.com");
+		
+		c1s.atualizar("1", c2);
+		
+		c1s.imprimirClientes();
+		
+		c1s.atualizar("12345678910", c2);
+		
+		c1s.imprimirClientes();
+		
+		System.out.println(c1s.remover("1"));
+		
+		System.out.println(c1s.remover("1"));
+		
+		c1s.imprimirClientes();
 		
 	}
 	
