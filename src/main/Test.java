@@ -1,5 +1,8 @@
 package main;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import collections.Clientes;
 import collections.Instituicoes;
 import collections.Lances;
@@ -56,7 +59,31 @@ public class Test {
 		
 		l1s.imprimir();
 		
-		Leilao ll1 = new Leilao(p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		System.out.println();
+		
+		Integer diaData = 25;
+		Integer mesData = 11;
+		Integer anoData = 2020;
+		
+		LocalDate localDate = LocalDate.of(anoData, mesData, diaData);
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		String data = localDate.format(formatter);
+		
+		System.out.println(localDate);
+		
+		System.out.println(data);
+		
+		Integer dia = localDate.getDayOfMonth();
+		Integer mes = localDate.getMonthValue();
+		Integer ano = localDate.getYear();
+		
+		System.out.println(dia + "/" + mes + "/" + ano + " TESTE");
+		
+		System.out.println();
+		
+		Leilao ll1 = new Leilao(localDate, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		Leiloes ll1s = new Leiloes();
 		
@@ -88,7 +115,7 @@ public class Test {
 		
 		c1s.imprimir();
 		
-		Leilao ll2 = new Leilao(p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		Leilao ll2 = new Leilao(localDate, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		ll1s.adicionar(ll2);
 		
