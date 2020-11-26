@@ -17,11 +17,11 @@ public class Cliente {
 	
 	@Override
 	public String toString() {
-		return("CPF do cliente: " + getCpf() +
-			   ", RG do cliente: " + getRg() +
-			   ", Nome completo do cliente: " + getNomeCompleto() +
-			   ", Endereço do cliente: " + getEndereco() +
-		       ", Email do cliente: " + getEmail()) + ".";
+		return("CPF do cliente: " + getCpf() + ",\n" +
+			   "RG do cliente: " + getRg() + ",\n" +
+			   "Nome completo do cliente: " + getNomeCompleto() + ",\n" +
+			   "Endereço do cliente: " + getEndereco() + ",\n" +
+		       "Email do cliente: " + getEmail()) + ".\n\n";
 	}
 	
 }

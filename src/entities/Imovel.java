@@ -20,11 +20,11 @@ public class Imovel extends Produto {
     
 	@Override
 	public String toString() {
-		return("Matrícula do imóvel: " + getMatricula() +
-			   ", Endereço do imóvel: " + getEndereco() +
-		       ", Descrição do imóvel: " + getDescricao() +
-		       ", Valor mínimo do imóvel: " + getValorMinimoProduto() +
-		       ", Tipo do imóvel: " + getTipoImovel().toString()) + ".";
+		return("Matrícula do imóvel: " + getMatricula() + ",\n" +
+			   "Endereço do imóvel: " + getEndereco() + ",\n" +
+		       "Descrição do imóvel: " + getDescricao() + ",\n" +
+		       "Valor mínimo do imóvel: " + getValorMinimoProduto() + ",\n" +
+		       "Tipo do imóvel: " + getTipoImovel().toString()) + ".\n\n";
 	}
 	
 }

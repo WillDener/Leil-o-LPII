@@ -16,9 +16,10 @@ public class Lance {
 	
 	@Override
 	public String toString() {
-		return(getCliente().toString() + " " +
-			   getProduto().toString() + " " +
-			   "Valor do lance: R$ " + String.format("%.2f", getValor()) + ".");
+		return("ID do lance: " + getId() + "\n" +
+			   getCliente().toString() +
+			   getProduto().toString() +
+			   "Valor do lance: R$ " + String.format("%.2f", getValor()) + ".\n");
 	}
 
 	public Lance(Cliente cliente, Produto produto, Double valor) {

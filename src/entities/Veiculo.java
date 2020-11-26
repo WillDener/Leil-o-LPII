@@ -24,13 +24,13 @@ public class Veiculo extends Produto {
     
     @Override
 	public String toString() {
-		return("Matrícula do veículo: " + getMatricula() +
-			   ", Placa do veículo: " + getPlaca() +
-		       ", Kilometragem rodada: " + getKilometragem() +
-		       ", Cor do veículo: " + getCor() +
-		       ", Descrição do veículo: " + getDescricao().toString() +
-		       ", Valor mínimo do veículo: " + getValorMinimoProduto() +
-		       ", Tipo do imóvel: " + getTipoVeiculo().toString()) + ".";
+		return("Matrícula do veículo: " + getMatricula() + ",\n" +
+			   "Placa do veículo: " + getPlaca() + "\n" +
+		       "Kilometragem rodada: " + getKilometragem() + ",\n" +
+		       "Cor do veículo: " + getCor() + ",\n" +
+		       "Descrição do veículo: " + getDescricao().toString() + ",\n" +
+		       "Valor mínimo do veículo: " + getValorMinimoProduto() + ",\n" +
+		       "Tipo do imóvel: " + getTipoVeiculo().toString()) + ".\n\n";
 	}
     
 }
