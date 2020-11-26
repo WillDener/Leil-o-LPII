@@ -61,29 +61,29 @@ public class Test {
 		
 		System.out.println();
 		
-		Integer diaData = 25;
-		Integer mesData = 11;
-		Integer anoData = 2020;
+		Integer dd1 = 25;
+		Integer md1 = 11;
+		Integer ad1 = 2020;
 		
-		LocalDate localDate = LocalDate.of(anoData, mesData, diaData);
+		LocalDate ld1 = LocalDate.of(ad1, md1, dd1);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
-		String data = localDate.format(formatter);
+		String data = ld1.format(formatter);
 		
-		System.out.println(localDate);
+		System.out.println(ld1);
 		
 		System.out.println(data);
 		
-		Integer dia = localDate.getDayOfMonth();
-		Integer mes = localDate.getMonthValue();
-		Integer ano = localDate.getYear();
+		Integer dia = ld1.getDayOfMonth();
+		Integer mes = ld1.getMonthValue();
+		Integer ano = ld1.getYear();
 		
 		System.out.println(dia + "/" + mes + "/" + ano + " TESTE");
 		
 		System.out.println();
 		
-		Leilao ll1 = new Leilao(localDate, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		Leilao ll1 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		Leiloes ll1s = new Leiloes();
 		
@@ -115,9 +115,23 @@ public class Test {
 		
 		c1s.imprimir();
 		
-		Leilao ll2 = new Leilao(localDate, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		Leilao ll2 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		ll1s.adicionar(ll2);
+		
+		ll1s.imprimir();
+		
+		Integer dd2 = 1;
+		Integer md2 = 11;
+		Integer ad2 = 2020;
+		
+		LocalDate ld2 = LocalDate.of(ad2, md2, dd2);
+		
+		Leilao ll3 = new Leilao(ld2, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		
+		ll1s.adicionar(ll3);
+		
+		ll1s.ordenarLeiloes();
 		
 		ll1s.imprimir();
 		

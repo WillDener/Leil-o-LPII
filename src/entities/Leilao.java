@@ -12,11 +12,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Leilao {
+public class Leilao implements Comparable {
 	
 	private static Integer idLeilao = 0;
 	private String id;
 	private LocalDate data;
+	private Integer dataFormatada;
 	private Produtos produtos;
 	private Clientes clientes;
 	private Instituicao instituicao;
@@ -26,7 +27,8 @@ public class Leilao {
 	@Override
 	public String toString() {
 		return("ID do leilão: " + getId().toString() + " " +
-			   "Data de ocorrência: " + getData().toString() + " " +
+			   "Data de ocorrência: " + data.getDayOfMonth() + "/" + data.getMonthValue() + "/" + data.getYear() + " " +
+			   // "Data formatada para comparação: " + getDataFormatada().toString() + " " +
 			   "Lista de produtos: " + produtos.toString() + " " +
 			   "Lista de clientes: " + clientes.toString() + " " +
 			   "Instituicao financeira responsável: " + getInstituicao().toString() + " " +
@@ -38,11 +40,23 @@ public class Leilao {
 		idLeilao++;
 		setId(idLeilao.toString());
 		setData(data);
+		setDataFormatada(data.getYear() * 10000 + data.getMonthValue() * 100 + data.getDayOfMonth());
 		setProdutos(produtos);
 		setClientes(clientes);
 		setInstituicao(instituicao);
 		setLances(lances);
 		setStatusLeilao(statusLeilao);
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		Leilao outroLeilao = (Leilao) o;
+		
+		if (getDataFormatada() < outroLeilao.getDataFormatada()) {
+			return 1;
+		}
+		
+		return 0;
 	}
 	
 }
