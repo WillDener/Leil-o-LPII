@@ -9,7 +9,8 @@ import interfaces.CreateReadUpdateDelete;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import services.LeilaoComparator;
+import services.LeilaoComparatorData;
+import services.LeilaoComparatorId;
 
 @NoArgsConstructor
 @Getter
@@ -96,8 +97,15 @@ public class Leiloes implements CreateReadUpdateDelete {
 		return false;
 	}
 	
-	public LinkedList<Leilao> ordenarLeiloes() {
-		LeilaoComparator leilaoComparator = new LeilaoComparator();
+	public LinkedList<Leilao> ordenarLeiloesPorData() {
+		LeilaoComparatorData leilaoComparator = new LeilaoComparatorData();
+		Collections.sort(leiloes, leilaoComparator);
+		
+		return leiloes;
+	}
+	
+	public LinkedList<Leilao> ordenarLeiloesPeloId() {
+		LeilaoComparatorId leilaoComparator = new LeilaoComparatorId();
 		Collections.sort(leiloes, leilaoComparator);
 		
 		return leiloes;

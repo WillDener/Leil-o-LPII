@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import entities.Leilao;
 
-public class LeilaoComparator implements Comparator {
+public class LeilaoComparatorData implements Comparator {
 	
 	@Override
     public int compare(Object objLeilao, Object objOutroLeilao) {

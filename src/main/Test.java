@@ -131,7 +131,16 @@ public class Test {
 		
 		ll1s.adicionar(ll3);
 		
-		ll1s.ordenarLeiloes();
+		
+		ll1s.ordenarLeiloesPorData();
+		
+		System.out.println();
+		
+		ll1s.imprimir();
+		
+		ll1s.ordenarLeiloesPeloId();
+		
+		System.out.println();
 		
 		ll1s.imprimir();
 		
