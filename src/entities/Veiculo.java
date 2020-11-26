@@ -8,9 +8,9 @@ import lombok.Setter;
 @Setter
 public class Veiculo extends Produto {
 	
-	public Veiculo(String matricula, String descricao, 
+	public Veiculo(String matricula, String descricao, Double valorMinimoProduto,
 				   String placa, Integer kilometragem, String cor, TipoVeiculo tipoVeiculo) {
-		super(matricula, descricao);
+		super(matricula, descricao, valorMinimoProduto);
 		setPlaca(placa);
 		setKilometragem(kilometragem);
 		setCor(cor);
@@ -29,6 +29,7 @@ public class Veiculo extends Produto {
 		       ", Kilometragem rodada: " + getKilometragem() +
 		       ", Cor do veículo: " + getCor() +
 		       ", Descrição do veículo: " + getDescricao().toString() +
+		       ", Valor mínimo do veículo: " + getValorMinimoProduto() +
 		       ", Tipo do imóvel: " + getTipoVeiculo().toString()) + ".";
 	}
     

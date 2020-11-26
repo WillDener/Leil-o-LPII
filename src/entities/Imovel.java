@@ -8,9 +8,9 @@ import lombok.Setter;
 @Setter
 public class Imovel extends Produto {
 	
-	public Imovel(String matricula, String descricao, 
+	public Imovel(String matricula, String descricao, Double valorMinimoProduto, 
 				   String endereco, TipoImovel tipoImovel) {
-		super(matricula, descricao);
+		super(matricula, descricao, valorMinimoProduto);
 		setEndereco(endereco);
 		setTipoImovel(tipoImovel);
 	}
@@ -23,6 +23,7 @@ public class Imovel extends Produto {
 		return("Matrícula do imóvel: " + getMatricula() +
 			   ", Endereço do imóvel: " + getEndereco() +
 		       ", Descrição do imóvel: " + getDescricao() +
+		       ", Valor mínimo do imóvel: " + getValorMinimoProduto() +
 		       ", Tipo do imóvel: " + getTipoImovel().toString()) + ".";
 	}
 	
