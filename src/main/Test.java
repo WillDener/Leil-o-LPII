@@ -2,6 +2,7 @@ package main;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import collections.Clientes;
 import collections.Instituicoes;
@@ -25,13 +26,35 @@ public class Test {
 		
 		Produtos p1s = new Produtos();
 		
-		Produto p1 = new Imovel("123", "Casa maneira pra caramba", "Rua das Acácias", TipoImovel.CASA);
+		Produto p1 = new Imovel("123", "Casa maneira pra caramba", 1000.0, "Rua das Acácias", TipoImovel.CASA);
 		
-		Produto p2 = new Veiculo("123", "Carro mais ou menos legal", "ABC-1234", 189000, "Amarelo", TipoVeiculo.CARRO);
+		Produto p2 = new Veiculo("000", "Carro menos legal", 1000.0, "ABC-1234", 100, "Amarelo", TipoVeiculo.CARRO);
+		
+		Produto p3 = new Veiculo("456", "Carro mais ou menos legal", 5000.0, "ABC-1234", 100, "Amarelo", TipoVeiculo.CARRO);
+		
+		Produto p4 = new Veiculo("789", "Motocicleta mais ou menos legal", 10000.0, "ABC-1234", 1000, "Amarelo", TipoVeiculo.MOTOCICLETA);
 		
 		p1s.adicionar(p1);
 		
 		p1s.adicionar(p2);
+		
+		p1s.adicionar(p3);
+		
+		p1s.adicionar(p4);
+		
+		System.out.println("TESTE AQUI DO FILTRO NOIS");
+		
+		Produtos pas = new Produtos();
+				
+		//pas = p1s.filtroFaixaValores(1000.0, 5000.0);								
+		
+		//pas = p1s.filtroPalavraChave("Carro");
+		
+		pas = p1s.filtroTipoProduto("Carro");
+		
+		pas.imprimir();
+		
+		System.out.println("FIM");
 		
 		p1s.imprimir();
 		
@@ -120,6 +143,8 @@ public class Test {
 		ll1s.adicionar(ll2);
 		
 		ll1s.imprimir();
+		
+		
 		
 	}
 	

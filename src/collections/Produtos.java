@@ -1,6 +1,7 @@
 package collections;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import entities.Imovel;
 import entities.Leilao;
@@ -17,6 +18,52 @@ import lombok.Setter;
 public class Produtos implements CreateReadUpdateDelete {
 	
 	private LinkedList<Produto> produtos = new LinkedList<Produto>();
+	
+	public Produtos filtroFaixaValores(Double min, Double max){
+		Produtos encontrados = new Produtos();
+		int contador = 0;
+		for (Produto produto: produtos) {
+			if (produto.getValorMinimoProduto() >= min && produto.getValorMinimoProduto() <= max) {
+				encontrados.adicionar(produto);
+				contador++;
+			}		 
+		}
+		return (contador > 0) ? encontrados : null;
+	}
+	
+	public Produtos filtroPalavraChave(String palavra){
+		Produtos encontrados = new Produtos();
+		int contador = 0;
+		for (Produto produto: produtos) {
+			if (produto.getDescricao().contains(palavra)) {
+				encontrados.adicionar(produto);
+				contador++;
+			}
+		}
+		return (contador > 0) ? encontrados : null;
+	}
+	
+	public Produtos filtroTipoProduto (String tipo){
+		Produtos encontrados = new Produtos();
+		int contador = 0;
+		for (Produto produto : produtos) {
+			if (produto instanceof Imovel) {
+				Imovel imovel = (Imovel) produto;
+				if (imovel.getTipoImovel().toString().equals(tipo)) {
+					encontrados.adicionar(imovel);
+					contador++;
+				}
+			}
+			else if (produto instanceof Veiculo) {
+				Veiculo veiculo = (Veiculo) produto;
+				if (veiculo.getTipoVeiculo().toString().equals(tipo)) {
+					encontrados.adicionar(veiculo);
+					contador++;
+				}
+			}
+		}		
+		return (contador > 0) ? encontrados : null;
+	}
 	
 	@Override
 	public String toString() {
@@ -108,6 +155,6 @@ public class Produtos implements CreateReadUpdateDelete {
 			return produtos.remove(produto);
 		}
 		return false;
-	}
+	}	
 	
 }
