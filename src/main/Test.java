@@ -26,7 +26,7 @@ public class Test {
 		
 		Produtos p1s = new Produtos();
 		
-		Produto p1 = new Imovel("123", "Casa maneira pra caramba", 1000.0, "Rua das Acácias", TipoImovel.CASA);
+		Produto p1 = new Imovel("123", "Casa maneira pra caramba", 1000.0, "Rua das Acï¿½cias", TipoImovel.CASA);
 		
 		Produto p2 = new Veiculo("000", "Carro menos legal", 1000.0, "ABC-1234", 100, "Amarelo", TipoVeiculo.CARRO);
 		
@@ -60,7 +60,7 @@ public class Test {
 		
 		Clientes c1s = new Clientes();
 		
-		Cliente c1 = new Cliente("12345678910", "123456789", "Pessoa totalmente bem intecionada", "Rua da Fármacia", "email@email.com");
+		Cliente c1 = new Cliente("12345678910", "123456789", "Pessoa totalmente bem intecionada", "Rua da Fï¿½rmacia", "email@email.com");
 		
 		c1s.adicionar(c1);
 		
@@ -68,7 +68,7 @@ public class Test {
 		
 		Instituicoes i1s = new Instituicoes();
 		
-		Instituicao i1 = new Instituicao("010203040506", "A loja de coisas usadas", "Rua Tupi Guaraná", "einteiro@einteiro.com");
+		Instituicao i1 = new Instituicao("010203040506", "A loja de coisas usadas", "Rua Tupi Guaranï¿½", "einteiro@einteiro.com");
 		
 		i1s.adicionar(i1);
 		
@@ -84,29 +84,29 @@ public class Test {
 		
 		System.out.println();
 		
-		Integer diaData = 25;
-		Integer mesData = 11;
-		Integer anoData = 2020;
+		Integer dd1 = 25;
+		Integer md1 = 11;
+		Integer ad1 = 2020;
 		
-		LocalDate localDate = LocalDate.of(anoData, mesData, diaData);
+		LocalDate ld1 = LocalDate.of(ad1, md1, dd1);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
-		String data = localDate.format(formatter);
+		String data = ld1.format(formatter);
 		
-		System.out.println(localDate);
+		System.out.println(ld1);
 		
 		System.out.println(data);
 		
-		Integer dia = localDate.getDayOfMonth();
-		Integer mes = localDate.getMonthValue();
-		Integer ano = localDate.getYear();
+		Integer dia = ld1.getDayOfMonth();
+		Integer mes = ld1.getMonthValue();
+		Integer ano = ld1.getYear();
 		
 		System.out.println(dia + "/" + mes + "/" + ano + " TESTE");
 		
 		System.out.println();
 		
-		Leilao ll1 = new Leilao(localDate, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		Leilao ll1 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		Leiloes ll1s = new Leiloes();
 		
@@ -120,7 +120,7 @@ public class Test {
 		
 		System.out.println(c1s.consultar("123").toString());
 		
-		Cliente c2 = new Cliente("1", "1", "Pessoa mal intecionada", "Rua dos Químicos", "x@x.com");
+		Cliente c2 = new Cliente("1", "1", "Pessoa mal intecionada", "Rua dos Quï¿½micos", "x@x.com");
 		
 		c1s.adicionar(c1);
 		
@@ -138,13 +138,34 @@ public class Test {
 		
 		c1s.imprimir();
 		
-		Leilao ll2 = new Leilao(localDate, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		Leilao ll2 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		ll1s.adicionar(ll2);
 		
 		ll1s.imprimir();
 		
+		Integer dd2 = 1;
+		Integer md2 = 11;
+		Integer ad2 = 2020;
 		
+		LocalDate ld2 = LocalDate.of(ad2, md2, dd2);
+		
+		Leilao ll3 = new Leilao(ld2, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		
+		ll1s.adicionar(ll3);
+		
+		
+		ll1s.ordenarLeiloesPorData();
+		
+		System.out.println();
+		
+		ll1s.imprimir();
+		
+		ll1s.ordenarLeiloesPeloId();
+		
+		System.out.println();
+		
+		ll1s.imprimir();
 		
 	}
 	

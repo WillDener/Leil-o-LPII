@@ -1,5 +1,7 @@
 package collections;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import entities.Leilao;
@@ -7,6 +9,8 @@ import interfaces.CreateReadUpdateDelete;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import services.LeilaoComparatorData;
+import services.LeilaoComparatorId;
 
 @NoArgsConstructor
 @Getter
@@ -91,6 +95,20 @@ public class Leiloes implements CreateReadUpdateDelete {
 			return leiloes.remove(leilao);
 		}
 		return false;
+	}
+	
+	public LinkedList<Leilao> ordenarLeiloesPorData() {
+		LeilaoComparatorData leilaoComparator = new LeilaoComparatorData();
+		Collections.sort(leiloes, leilaoComparator);
+		
+		return leiloes;
+	}
+	
+	public LinkedList<Leilao> ordenarLeiloesPeloId() {
+		LeilaoComparatorId leilaoComparator = new LeilaoComparatorId();
+		Collections.sort(leiloes, leilaoComparator);
+		
+		return leiloes;
 	}
 
 }
