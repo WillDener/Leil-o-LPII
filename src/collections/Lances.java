@@ -3,7 +3,6 @@ package collections;
 import java.util.LinkedList;
 
 import entities.Lance;
-import entities.Leilao;
 import interfaces.CreateReadUpdateDelete;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

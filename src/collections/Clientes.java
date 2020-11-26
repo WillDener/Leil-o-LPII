@@ -2,8 +2,6 @@ package collections;
 
 import java.util.LinkedList;
 
-import javax.swing.JOptionPane;
-
 import entities.Cliente;
 import interfaces.CreateReadUpdateDelete;
 import lombok.Getter;

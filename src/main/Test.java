@@ -2,7 +2,6 @@ package main;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import collections.Clientes;
 import collections.Instituicoes;
@@ -153,7 +152,6 @@ public class Test {
 		Leilao ll3 = new Leilao(ld2, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		ll1s.adicionar(ll3);
-		
 		
 		ll1s.ordenarLeiloesPorData();
 		
