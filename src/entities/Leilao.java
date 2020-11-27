@@ -1,7 +1,11 @@
 package entities;
 
+import java.security.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
+import org.junit.Before;
 
 import collections.Clientes;
 import collections.Lances;
@@ -16,47 +20,62 @@ public class Leilao implements Comparable {
 	
 	private static Integer idLeilao = 0;
 	private String id;
-	private LocalDate data;
-	private Integer dataFormatada;
+	private LocalDateTime dataHoraInicio;
+	private LocalDateTime dataHoraFim;
+	private Integer dataHoraInicioFormatada;
 	private Produtos produtos;
 	private Clientes clientes;
 	private Instituicao instituicao;
 	private Lances lances;
-	private StatusLeilao statusLeilao;
+	private StatusLeilao statusLeilao = StatusLeilao.ABERTO;
 	
 	@Override
 	public String toString() {
 		return("ID do leilão: " + getId().toString() + " " +
-			   "Data de ocorrência: " + data.getDayOfMonth() + "/" + data.getMonthValue() + "/" + data.getYear() + " " +
-			   // "Data formatada para comparação: " + getDataFormatada().toString() + " " +
-			   "Lista de produtos: " + produtos.toString() + " " +
-			   "Lista de clientes: " + clientes.toString() + " " +
+			   "Data de início: " + getDataHoraInicio().getDayOfMonth() + "/" + getDataHoraInicio().getMonthValue() + "/" + getDataHoraInicio().getYear() + " " +
+			   "Horário de início: " + getDataHoraInicio().getHour() + ":" + getDataHoraInicio().getMinute() + " " +
+			   "Lista de produtos: " + getProdutos().toString() + " " +
+			   "Lista de clientes: " + getClientes().toString() + " " +
 			   "Instituicao financeira responsável: " + getInstituicao().toString() + " " +
-			   "Lista de lances: " + lances.toString() + " " +
+			   "Lista de lances: " + getLances().toString() + " " +
 			   "Status do leilão: " + getStatusLeilao().toString()) + ".";
 	}
 	
-	public Leilao(LocalDate data, Produtos produtos, Clientes clientes, Instituicao instituicao, Lances lances, StatusLeilao statusLeilao) {
+	public Leilao(LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Produtos produtos, 
+				  Clientes clientes, Instituicao instituicao, Lances lances) {
 		idLeilao++;
 		setId(idLeilao.toString());
-		setData(data);
-		setDataFormatada(data.getYear() * 10000 + data.getMonthValue() * 100 + data.getDayOfMonth());
+		setDataHoraInicio(dataHoraInicio);
+		setDataHoraFim(dataHoraFim);
+		setDataHoraInicioFormatada(dataHoraInicio.getYear() * 10000 + dataHoraInicio.getMonthValue() * 100 + dataHoraInicio.getDayOfMonth());
 		setProdutos(produtos);
 		setClientes(clientes);
 		setInstituicao(instituicao);
 		setLances(lances);
-		setStatusLeilao(statusLeilao);
+		updateStatusLeilao();
 	}
 
 	@Override
 	public int compareTo(Object o) {
 		Leilao outroLeilao = (Leilao) o;
 		
-		if (getDataFormatada() < outroLeilao.getDataFormatada()) {
+		if (getDataHoraInicioFormatada() < outroLeilao.getDataHoraInicioFormatada()) {
 			return 1;
 		}
 		
 		return 0;
+	}
+	
+	public void updateStatusLeilao() {
+		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+		
+		if (now.isBefore(getDataHoraInicio())) {
+			setStatusLeilao(StatusLeilao.ABERTO);
+		} else if (now.isEqual(dataHoraFim) || now.isAfter(getDataHoraFim())) {
+			setStatusLeilao(StatusLeilao.FINALIZADO);
+		} else if ((now.isEqual(dataHoraInicio) || now.isAfter(getDataHoraInicio())) && now.isBefore(getDataHoraFim())) {
+			setStatusLeilao(StatusLeilao.ANDAMENTO);
+		}
 	}
 	
 }

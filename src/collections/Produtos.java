@@ -1,10 +1,8 @@
 package collections;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import entities.Imovel;
-import entities.Leilao;
 import entities.Produto;
 import entities.Veiculo;
 import interfaces.CreateReadUpdateDelete;

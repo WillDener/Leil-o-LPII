@@ -1,8 +1,8 @@
 package main;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import collections.Clientes;
 import collections.Instituicoes;
@@ -42,7 +42,7 @@ public class Test {
 		
 		p1s.adicionar(p4);
 		
-		System.out.println("TESTE AQUI DO FILTRO NOIS");
+		System.out.println("INÍCIO TESTE FILTRO");
 		
 		Produtos pas = new Produtos();
 				
@@ -54,7 +54,7 @@ public class Test {
 		
 		pas.imprimir();
 		
-		System.out.println("FIM");
+		System.out.println("FIM TESTE FILTRO");
 		
 		p1s.imprimir();
 		
@@ -84,29 +84,35 @@ public class Test {
 		
 		System.out.println();
 		
-		Integer dd1 = 25;
-		Integer md1 = 11;
-		Integer ad1 = 2020;
+		Integer diaData1 = 26;
+		Integer mesData1 = 11;
+		Integer anoData1 = 2020;
+		Integer horaData1 = 22;
+		Integer minutoData1 = 00;
 		
-		LocalDate ld1 = LocalDate.of(ad1, md1, dd1);
+		LocalDateTime dataInicio1 = LocalDateTime.of(anoData1, mesData1, diaData1, horaData1, minutoData1);
+		
+		Integer diaData2 = 26;
+		Integer mesData2 = 11;
+		Integer anoData2 = 2020;
+		Integer horaData2 = 22;
+		Integer minutoData2 = 05;
+		
+		LocalDateTime dataFim1 = LocalDateTime.of(anoData2, mesData2, diaData2, horaData2, minutoData2);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
-		String data = ld1.format(formatter);
+		String data1 = dataInicio1.format(formatter);
 		
-		System.out.println(ld1);
+		String data2 = dataFim1.format(formatter);
 		
-		System.out.println(data);
+		System.out.println(dataInicio1);
 		
-		Integer dia = ld1.getDayOfMonth();
-		Integer mes = ld1.getMonthValue();
-		Integer ano = ld1.getYear();
-		
-		System.out.println(dia + "/" + mes + "/" + ano + " TESTE");
+		System.out.println(dataFim1);
 		
 		System.out.println();
 		
-		Leilao ll1 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		Leilao ll1 = new Leilao(dataInicio1, dataFim1, p1s, c1s, i1, l1s);
 		
 		Leiloes ll1s = new Leiloes();
 		
@@ -138,9 +144,9 @@ public class Test {
 		
 		c1s.imprimir();
 		
-		Leilao ll2 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		// Leilao ll2 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
-		ll1s.adicionar(ll2);
+		// ll1s.adicionar(ll2);
 		
 		ll1s.imprimir();
 		
@@ -150,9 +156,9 @@ public class Test {
 		
 		LocalDate ld2 = LocalDate.of(ad2, md2, dd2);
 		
-		Leilao ll3 = new Leilao(ld2, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		// Leilao ll3 = new Leilao(ld2, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
-		ll1s.adicionar(ll3);		
+		// ll1s.adicionar(ll3);
 		
 		ll1s.ordenarLeiloesPorData();
 		
@@ -166,6 +172,11 @@ public class Test {
 		
 		ll1s.imprimir();
 		
+		System.out.println(ll1.getStatusLeilao().toString());
+		
+		ll1.updateStatusLeilao();
+		
+		System.out.println(ll1.getStatusLeilao().toString());
 	}
 	
 }
