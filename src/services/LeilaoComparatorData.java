@@ -11,7 +11,7 @@ public class LeilaoComparatorData implements Comparator {
 		Leilao leilao = (Leilao) objLeilao;
 		Leilao outroLeilao = (Leilao) objOutroLeilao;
 		
-        return leilao.getDataFormatada().compareTo(outroLeilao.getDataFormatada());
+        return leilao.getDataHoraInicioFormatada().compareTo(outroLeilao.getDataHoraInicioFormatada());
     }
 	
 }
