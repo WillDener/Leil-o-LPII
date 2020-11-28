@@ -3,6 +3,8 @@ package collections;
 import java.util.LinkedList;
 
 import entities.Lance;
+import entities.Leilao;
+import entities.Produto;
 import interfaces.CreateReadUpdateDelete;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,18 @@ import lombok.Setter;
 public class Lances implements CreateReadUpdateDelete {
 	
 	private LinkedList<Lance> lances = new LinkedList<Lance>();
+	
+	public Lances historicoLances (Produto produto) {
+		Lances encontrados = new Lances();
+		Integer contador = 0;
+		for (Lance lance : lances) {
+			if (lance.getProduto().equals(produto)) {
+				encontrados.adicionar(lance);
+				contador ++;
+			}
+		}
+		return (contador>0) ? encontrados : null;
+	}
 	
 	@Override
 	public String toString() {
