@@ -1,8 +1,9 @@
 package main;
 
+import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import collections.Clientes;
 import collections.Instituicoes;
@@ -19,10 +20,11 @@ import entities.Veiculo;
 import enums.StatusLeilao;
 import enums.TipoImovel;
 import enums.TipoVeiculo;
+import services.ExportaDados;
 
 public class Test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		Produtos p1s = new Produtos();
 		
@@ -42,7 +44,7 @@ public class Test {
 		
 		p1s.adicionar(p4);
 		
-		System.out.println("INÍCIO TESTE FILTRO");
+		System.out.println("TESTE AQUI DO FILTRO NOIS");
 		
 		Produtos pas = new Produtos();
 				
@@ -54,7 +56,7 @@ public class Test {
 		
 		pas.imprimir();
 		
-		System.out.println("FIM TESTE FILTRO");
+		System.out.println("FIM");
 		
 		p1s.imprimir();
 		
@@ -84,35 +86,29 @@ public class Test {
 		
 		System.out.println();
 		
-		Integer diaData1 = 26;
-		Integer mesData1 = 11;
-		Integer anoData1 = 2020;
-		Integer horaData1 = 22;
-		Integer minutoData1 = 00;
+		Integer dd1 = 25;
+		Integer md1 = 11;
+		Integer ad1 = 2020;
 		
-		LocalDateTime dataInicio1 = LocalDateTime.of(anoData1, mesData1, diaData1, horaData1, minutoData1);
-		
-		Integer diaData2 = 26;
-		Integer mesData2 = 11;
-		Integer anoData2 = 2020;
-		Integer horaData2 = 22;
-		Integer minutoData2 = 05;
-		
-		LocalDateTime dataFim1 = LocalDateTime.of(anoData2, mesData2, diaData2, horaData2, minutoData2);
+		LocalDate ld1 = LocalDate.of(ad1, md1, dd1);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
-		String data1 = dataInicio1.format(formatter);
+		String data = ld1.format(formatter);
 		
-		String data2 = dataFim1.format(formatter);
+		System.out.println(ld1);
 		
-		System.out.println(dataInicio1);
+		System.out.println(data);
 		
-		System.out.println(dataFim1);
+		Integer dia = ld1.getDayOfMonth();
+		Integer mes = ld1.getMonthValue();
+		Integer ano = ld1.getYear();
+		
+		System.out.println(dia + "/" + mes + "/" + ano + " TESTE");
 		
 		System.out.println();
 		
-		Leilao ll1 = new Leilao(dataInicio1, dataFim1, p1s, c1s, i1, l1s);
+		Leilao ll1 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		Leiloes ll1s = new Leiloes();
 		
@@ -144,9 +140,9 @@ public class Test {
 		
 		c1s.imprimir();
 		
-		// Leilao ll2 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		Leilao ll2 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
-		// ll1s.adicionar(ll2);
+		ll1s.adicionar(ll2);
 		
 		ll1s.imprimir();
 		
@@ -156,9 +152,9 @@ public class Test {
 		
 		LocalDate ld2 = LocalDate.of(ad2, md2, dd2);
 		
-		// Leilao ll3 = new Leilao(ld2, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
+		Leilao ll3 = new Leilao(ld2, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
-		// ll1s.adicionar(ll3);
+		ll1s.adicionar(ll3);		
 		
 		ll1s.ordenarLeiloesPorData();
 		
@@ -172,11 +168,9 @@ public class Test {
 		
 		ll1s.imprimir();
 		
-		System.out.println(ll1.getStatusLeilao().toString());
+		ExportaDados exp = new ExportaDados();
+		exp.exportarDadosLeilao(ll3);
 		
-		ll1.updateStatusLeilao();
-		
-		System.out.println(ll1.getStatusLeilao().toString());
 	}
 	
 }
