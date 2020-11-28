@@ -2,10 +2,15 @@ package collections;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.LinkedList;
+
+import javax.print.attribute.Size2DSyntax;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import entities.Cliente;
 import entities.Imovel;
@@ -114,6 +119,70 @@ public class LeiloesTest {
 		
 		Leilao leilao = new Leilao(now.minusMinutes(10), now.minusMinutes(5), produtos, clientes, instituicao, lances);
 		Assert.assertEquals(StatusLeilao.FINALIZADO, leilao.getStatusLeilao());
+	}
+	
+	@Test
+	public void validarAdicionarLeilao() {
+		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+		
+		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao, lances);
+		Leilao leilao2 = new Leilao(now, now, produtos, clientes, instituicao, lances);
+		
+		Leiloes leiloes = new Leiloes();
+		leiloes.adicionar(leilao1);
+		leiloes.adicionar(leilao2);
+		
+		Assert.assertEquals(2, leiloes.getLeiloes().size());
+	}
+	
+	@Test
+	public void validarAdicionarRepetido() {
+		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+		
+		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao, lances);
+		
+		Leiloes leiloes = new Leiloes();
+
+		leiloes.adicionar(leilao1);
+		leiloes.adicionar(leilao1);
+		
+		Assert.assertEquals(1, leiloes.getLeiloes().size());
+	}
+	
+	@Test
+	public void validarAdicionarInvalido() {
+		Leiloes leiloes = new Leiloes();
+		
+		try {
+			leiloes.adicionar(instituicao);
+		} catch (IllegalArgumentException ex) {
+			Assert.assertEquals("O item não é um leilão.", ex.getMessage());
+		}
+	}
+	
+	@Test
+	public void validarAtualizarLeilao() {
+		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+		
+		Instituicao instituicao = new Instituicao("0001123456789", "Nova", "Rua do céu", "email@email.com");
+		
+		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao, lances);
+		
+		Leilao leilao2 = new Leilao(now.plusMinutes(5), now.plusMinutes(10), produtos, clientes, instituicao, lances);
+		
+		Leiloes leiloes = new Leiloes();
+		
+		leiloes.adicionar(leilao1);
+		
+		System.out.println(leiloes.getLeiloes().get(0).getId());
+		
+		Integer id = 1;
+		
+		leiloes.atualizar(id.toString(), leilao2);
+		
+		System.out.println(leiloes.consultar(id.toString()));
+		
+		Assert.assertEquals(instituicao.getCnpj(), leiloes.consultar("1"));
 	}
 	
 }

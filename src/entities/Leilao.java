@@ -18,7 +18,6 @@ import lombok.Setter;
 @Setter
 public class Leilao implements Comparable {
 	
-	private static Integer idLeilao = 0;
 	private String id;
 	private LocalDateTime dataHoraInicio;
 	private LocalDateTime dataHoraFim;
@@ -31,20 +30,18 @@ public class Leilao implements Comparable {
 	
 	@Override
 	public String toString() {
-		return("ID do leilão: " + getId().toString() + " " +
-			   "Data de início: " + getDataHoraInicio().getDayOfMonth() + "/" + getDataHoraInicio().getMonthValue() + "/" + getDataHoraInicio().getYear() + " " +
-			   "Horário de início: " + getDataHoraInicio().getHour() + ":" + getDataHoraInicio().getMinute() + " " +
-			   "Lista de produtos: " + getProdutos().toString() + " " +
-			   "Lista de clientes: " + getClientes().toString() + " " +
-			   "Instituicao financeira responsável: " + getInstituicao().toString() + " " +
-			   "Lista de lances: " + getLances().toString() + " " +
+		return("ID do leilão: " + getId().toString() + "\n" +
+			   "Data de início: " + getDataHoraInicio().getDayOfMonth() + "/" + getDataHoraInicio().getMonthValue() + "/" + getDataHoraInicio().getYear() + "\n" +
+			   "Horário de início: " + getDataHoraInicio().getHour() + ":" + getDataHoraInicio().getMinute() + "\n" +
+			   "Lista de produtos: " + getProdutos().toString() +
+			   "Lista de clientes: " + getClientes().toString() +
+			   "Instituicao financeira responsável: " + getInstituicao().toString() + "\n" +
+			   "Lista de lances: " + getLances().toString() + "\n" +
 			   "Status do leilão: " + getStatusLeilao().toString()) + ".";
 	}
 	
 	public Leilao(LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Produtos produtos, 
 				  Clientes clientes, Instituicao instituicao, Lances lances) {
-		idLeilao++;
-		setId(idLeilao.toString());
 		setDataHoraInicio(dataHoraInicio);
 		setDataHoraFim(dataHoraFim);
 		setDataHoraInicioFormatada(dataHoraInicio.getYear() * 10000 + dataHoraInicio.getMonthValue() * 100 + dataHoraInicio.getDayOfMonth());
