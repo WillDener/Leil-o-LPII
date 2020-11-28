@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -19,10 +20,11 @@ import entities.Veiculo;
 import enums.StatusLeilao;
 import enums.TipoImovel;
 import enums.TipoVeiculo;
+import services.ExportaDados;
 
 public class Test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		Produtos p1s = new Produtos();
 		
@@ -165,6 +167,9 @@ public class Test {
 		System.out.println();
 		
 		ll1s.imprimir();
+		
+		ExportaDados exp = new ExportaDados();
+		exp.exportarDadosLeilao(ll3);
 		
 	}
 	
