@@ -44,6 +44,7 @@ public class Leiloes implements CreateReadUpdateDelete {
 				setIdLeilao(getIdLeilao() + 1);
 				leilaoSave.setId(getIdLeilao().toString());
 				getLeiloes().add(leilaoSave);
+				System.out.println("Leilão cadastrado com sucesso.");
 			} else {
 				System.out.println("Leilão já cadastrado anteriormente.");
 			}

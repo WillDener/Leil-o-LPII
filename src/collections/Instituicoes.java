@@ -39,6 +39,7 @@ public class Instituicoes implements CreateReadUpdateDelete {
 				
 			if (instituicaoSearch instanceof String) {
 				getInstituicoes().add(instituicaoSave);
+				System.out.println("Instituição cadastrada com sucesso.");
 			} else {
 				System.out.println("Instituição já cadastrada anteriormente.");
 			}

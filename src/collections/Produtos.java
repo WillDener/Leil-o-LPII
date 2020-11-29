@@ -93,6 +93,7 @@ public class Produtos implements CreateReadUpdateDelete {
 				
 			if(produtoSearch instanceof String) {
 				getProdutos().add(produtoSave);
+				System.out.println("Imóvel ou veículo cadastrado com sucesso.");
 			} else {
 				System.out.println("Imóvel ou veículo já cadastrado anteriormente.");
 			}

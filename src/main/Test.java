@@ -3,24 +3,19 @@ package main;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import collections.Clientes;
 import collections.Instituicoes;
 import collections.Lances;
-import collections.Leiloes;
 import collections.Produtos;
 import entities.Cliente;
 import entities.Imovel;
 import entities.Instituicao;
 import entities.Lance;
-import entities.Leilao;
 import entities.Produto;
 import entities.Veiculo;
-import enums.StatusLeilao;
 import enums.TipoImovel;
 import enums.TipoVeiculo;
-import services.ExportarDados;
 
 public class Test {
 

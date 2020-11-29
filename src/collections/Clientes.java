@@ -39,6 +39,7 @@ public class Clientes implements CreateReadUpdateDelete {
 				
 			if (clienteSearch instanceof String) {
 				getClientes().add(clienteSave);
+				System.out.println("Cliente cadastrado com sucesso.");
 			} else {
 				System.out.println("Cliente já cadastrado anteriormente.");
 			}

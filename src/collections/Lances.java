@@ -53,6 +53,7 @@ public class Lances implements CreateReadUpdateDelete {
 				
 			if (lanceSearch instanceof String) {
 				getLances().add(lanceSave);
+				System.out.println("Lance cadastrado com sucesso.");
 			} else {
 				System.out.println("Lance já cadastrado anteriormente.");
 			}
