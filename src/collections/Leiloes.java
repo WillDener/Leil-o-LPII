@@ -72,7 +72,6 @@ public class Leiloes implements CreateReadUpdateDelete {
 		if (leilaoOld instanceof Leilao) {
 			Leilao leilaoOldCasted = (Leilao) leilaoOld;
 			
-			leilaoOldCasted.setId(leilaoNewCasted.getId());
 			leilaoOldCasted.setProdutos(leilaoNewCasted.getProdutos());
 			leilaoOldCasted.setClientes(leilaoNewCasted.getClientes());
 			leilaoOldCasted.setInstituicao(leilaoNewCasted.getInstituicao());

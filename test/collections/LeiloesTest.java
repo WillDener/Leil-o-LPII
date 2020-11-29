@@ -164,25 +164,45 @@ public class LeiloesTest {
 	public void validarAtualizarLeilao() {
 		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
-		Instituicao instituicao = new Instituicao("0001123456789", "Nova", "Rua do céu", "email@email.com");
+		Instituicao instituicaoNova = new Instituicao("0001123456789", "Nova", "Rua do céu", "email@email.com");
 		
 		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao, lances);
-		
-		Leilao leilao2 = new Leilao(now.plusMinutes(5), now.plusMinutes(10), produtos, clientes, instituicao, lances);
+		Leilao leilao2 = new Leilao(now.plusMinutes(5), now.plusMinutes(10), produtos, clientes, instituicaoNova, lances);
 		
 		Leiloes leiloes = new Leiloes();
-		
 		leiloes.adicionar(leilao1);
 		
-		System.out.println(leiloes.getLeiloes().get(0).getId());
+		leiloes.atualizar("1", leilao2);
 		
-		Integer id = 1;
+		// leiloes.imprimir();
 		
-		leiloes.atualizar(id.toString(), leilao2);
+		Leilao leilao = (Leilao) leiloes.consultar("1");
 		
-		System.out.println(leiloes.consultar(id.toString()));
+		Assert.assertEquals(instituicaoNova.getCnpj(), leilao.getInstituicao().getCnpj());
+	}
+	
+	@Test
+	public void validarOrdernarLeilaoDataId() {
+		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
-		Assert.assertEquals(instituicao.getCnpj(), leiloes.consultar("1"));
+		Leilao leilao1 = new Leilao(now.minusDays(10).minusHours(5), now.minusDays(10), produtos, clientes, instituicao, lances);
+		Leilao leilao2 = new Leilao(now.minusDays(10).minusHours(10), now.minusDays(10), produtos, clientes, instituicao, lances);
+		
+		Leiloes leiloes = new Leiloes();
+		leiloes.adicionar(leilao1);
+		leiloes.adicionar(leilao2);
+		
+		LinkedList<Leilao> leiloesOrdenadoData = leiloes.ordenarLeiloesPorData();
+		
+		Assert.assertEquals("2", leiloesOrdenadoData.get(0).getId());
+		
+		Leiloes leiloesData = new Leiloes();
+		leiloesData.setLeiloes(leiloesOrdenadoData);
+		
+		LinkedList<Leilao> leiloesOrdenadoId = leiloesData.ordenarLeiloesPeloId();
+		
+		Assert.assertEquals("1", leiloesOrdenadoId.get(0).getId());
+		
 	}
 	
 }

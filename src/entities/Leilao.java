@@ -21,7 +21,6 @@ public class Leilao implements Comparable {
 	private String id;
 	private LocalDateTime dataHoraInicio;
 	private LocalDateTime dataHoraFim;
-	private Integer dataHoraInicioFormatada;
 	private Produtos produtos;
 	private Clientes clientes;
 	private Instituicao instituicao;
@@ -44,7 +43,6 @@ public class Leilao implements Comparable {
 				  Clientes clientes, Instituicao instituicao, Lances lances) {
 		setDataHoraInicio(dataHoraInicio);
 		setDataHoraFim(dataHoraFim);
-		setDataHoraInicioFormatada(dataHoraInicio.getYear() * 10000 + dataHoraInicio.getMonthValue() * 100 + dataHoraInicio.getDayOfMonth());
 		setProdutos(produtos);
 		setClientes(clientes);
 		setInstituicao(instituicao);
@@ -56,7 +54,7 @@ public class Leilao implements Comparable {
 	public int compareTo(Object o) {
 		Leilao outroLeilao = (Leilao) o;
 		
-		if (getDataHoraInicioFormatada() < outroLeilao.getDataHoraInicioFormatada()) {
+		if (getDataHoraInicio().isAfter(outroLeilao.getDataHoraInicio())) {
 			return 1;
 		}
 		
