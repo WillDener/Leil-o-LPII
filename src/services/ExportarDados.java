@@ -6,13 +6,13 @@ import java.io.PrintWriter;
 
 import entities.Leilao;
 
-public class ExportaDados {
+public class ExportarDados {
 	
 	public void exportarDadosLeilao(Leilao leilao) throws IOException {
-		String nameFile = "leilao"+leilao.getId()+".DET";		
+		String nameFile = "leilao" + leilao.getId() + ".DET";		
 		FileWriter file = new FileWriter(nameFile);
 		PrintWriter writer = new PrintWriter(file);		
-		writer.printf("Dados leilao%n%n");
+		writer.printf("Dados leilão %n%n");
 		writer.printf(leilao.toString());		
 		writer.close();
 	}

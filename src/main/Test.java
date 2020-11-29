@@ -20,7 +20,7 @@ import entities.Veiculo;
 import enums.StatusLeilao;
 import enums.TipoImovel;
 import enums.TipoVeiculo;
-import services.ExportaDados;
+import services.ExportarDados;
 
 public class Test {
 
@@ -108,6 +108,7 @@ public class Test {
 		
 		System.out.println();
 		
+		/*
 		Leilao ll1 = new Leilao(ld1, p1s, c1s, i1, l1s, StatusLeilao.ABERTO);
 		
 		Leiloes ll1s = new Leiloes();
@@ -170,7 +171,7 @@ public class Test {
 		
 		ExportaDados exp = new ExportaDados();
 		exp.exportarDadosLeilao(ll3);
-		
+		*/
 	}
 	
 }
