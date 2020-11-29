@@ -3,6 +3,7 @@ package main;
 import java.util.Scanner;
 
 import collections.Clientes;
+import database.Database;
 import lombok.Getter;
 import lombok.Setter;
 import screen.TelaInicial;

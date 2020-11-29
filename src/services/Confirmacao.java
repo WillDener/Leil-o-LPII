@@ -1,4 +1,4 @@
-package screen;
+package services;
 
 import java.util.Scanner;
 

@@ -3,12 +3,13 @@ package screen;
 import java.util.Scanner;
 
 import collections.Instituicoes;
+import database.Database;
 import entities.Instituicao;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import main.Database;
 import main.Main;
+import services.Confirmacao;
 
 @NoArgsConstructor
 @Getter
@@ -52,7 +53,7 @@ public class CadastroInstituicao {
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
-		confirmacao = false;
+		setConfirmacao(false);
 		while (!confirmacao) {
 			System.out.println("Dados da instituição");
 			System.out.println("\tCNPJ: " + instituicao.getCnpj());

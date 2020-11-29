@@ -19,23 +19,23 @@ public class TelaInicial {
 		int escolha;
 		
 		do {
-			CadastroCliente cadastroCliente = new CadastroCliente();
+			TelaClientes telaClientes = new TelaClientes();
 			
 			CadastroInstituicao cadastroInstituicao = new CadastroInstituicao();
 			
-			System.out.println("Opções");
-			System.out.println("1 - Cadastrar cliente no sistema");
-			System.out.println("2 - Cadastrar instituição no sistema");
-			System.out.println("3 - Cadastrar produto no sistema");
-			System.out.println("4 - Cadastrar leilão no sistema");		
+			System.out.println("Escolha uma das operações abaixo:");
+			System.out.println("1 - Clientes");
+			System.out.println("2 - Instituições");
+			System.out.println("3 - Produtos");
+			System.out.println("4 - Leilões");		
 			
-			System.out.println("Escolha uma opção: ");		
+			System.out.println("Insira sua opção: ");		
 			escolha = input.nextInt();
 			System.out.println();
 			
 			switch (escolha) {
 			case 1:
-				cadastroCliente.cadastrarCliente();
+				telaClientes.opcoesClientes();
 				break;
 				
 			case 2:

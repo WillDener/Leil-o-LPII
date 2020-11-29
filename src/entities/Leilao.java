@@ -32,6 +32,8 @@ public class Leilao implements Comparable {
 		return("ID do leilão: " + getId().toString() + "\n" +
 			   "Data de início: " + getDataHoraInicio().getDayOfMonth() + "/" + getDataHoraInicio().getMonthValue() + "/" + getDataHoraInicio().getYear() + "\n" +
 			   "Horário de início: " + getDataHoraInicio().getHour() + ":" + getDataHoraInicio().getMinute() + "\n" +
+			   "Data de finaliação: " + getDataHoraFim().getDayOfMonth() + "/" + getDataHoraFim().getMonthValue() + "/" + getDataHoraFim().getYear() + "\n" +
+			   "Horário de finalização: " + getDataHoraFim().getHour() + ":" + getDataHoraFim().getMinute() + "\n" +
 			   "Lista de produtos: " + getProdutos().toString() +
 			   "Lista de clientes: " + getClientes().toString() +
 			   "Instituicao financeira responsável: " + getInstituicao().toString() + "\n" +
