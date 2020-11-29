@@ -17,6 +17,7 @@ import services.LeilaoComparatorId;
 public class Leiloes implements CreateReadUpdateDelete {
 	
 	private LinkedList<Leilao> leiloes = new LinkedList<Leilao>();
+	private Integer idLeilao = 0;
 	
 	@Override
 	public String toString() {
@@ -25,14 +26,6 @@ public class Leiloes implements CreateReadUpdateDelete {
 			listaLeiloes += leilao.toString();
 		};
 		return listaLeiloes;
-	}
-	
-	public void adicionar(Leilao leilao) {
-		if(leilao instanceof Leilao) {
-			getLeiloes().add(leilao);
-		} else {
-			throw new IllegalArgumentException("O item não é um leilão");
-		}
 	}
 	
 	public void imprimir() {
@@ -46,8 +39,10 @@ public class Leiloes implements CreateReadUpdateDelete {
 		try {
 			Leilao leilaoSave = (Leilao) leilao;
 			Object leilaoSearch = consultar(leilaoSave.getId());
-				
+			
 			if (leilaoSearch instanceof String) {
+				setIdLeilao(getIdLeilao() + 1);
+				leilaoSave.setId(getIdLeilao().toString());
 				getLeiloes().add(leilaoSave);
 			} else {
 				System.out.println("Leilão já cadastrado anteriormente.");
@@ -77,7 +72,6 @@ public class Leiloes implements CreateReadUpdateDelete {
 		if (leilaoOld instanceof Leilao) {
 			Leilao leilaoOldCasted = (Leilao) leilaoOld;
 			
-			leilaoOldCasted.setId(leilaoNewCasted.getId());
 			leilaoOldCasted.setProdutos(leilaoNewCasted.getProdutos());
 			leilaoOldCasted.setClientes(leilaoNewCasted.getClientes());
 			leilaoOldCasted.setInstituicao(leilaoNewCasted.getInstituicao());

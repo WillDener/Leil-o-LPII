@@ -33,7 +33,7 @@ public class LancesTest {
 		cut.adicionar(lance2);
 		cut.adicionar(lance3);
 		cut.adicionar(lance4);
-		cut.historicoLances(produto1).imprimir();
+		cut.historicoLances(produto1);
 		Assert.assertEquals(4, cut.getLances().size());
 	}
 
