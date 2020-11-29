@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 
 import entities.Leilao;
 
-public class ExportarDados {
+public class ExportaDados {
 	
 	public void exportarDadosLeilao(Leilao leilao) throws IOException {
 		String nameFile = "leilao" + leilao.getId() + ".DET";		

@@ -17,7 +17,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		System.out.println("( ͡° ͜ʖ ͡°) BEM VINDO AO SISTEMA DE LEILÃO ¯\\_(ツ)_/¯\n");
+		System.out.println("( ͡° ͜ʖ ͡°) BEM VINDO AO SISTEMA DE LEILÃO\n");
 		
 		TelaInicial telaInicial = new TelaInicial();
 		

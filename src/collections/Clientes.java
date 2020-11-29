@@ -37,7 +37,7 @@ public class Clientes implements CreateReadUpdateDelete {
 			Cliente clienteSave = (Cliente) cliente;
 			Object clienteSearch = consultar(clienteSave.getCpf());
 				
-			if (clienteSearch instanceof String) {
+			if (clienteSearch == null) {
 				getClientes().add(clienteSave);
 				System.out.println("Cliente cadastrado com sucesso.");
 			} else {
@@ -56,7 +56,7 @@ public class Clientes implements CreateReadUpdateDelete {
 				return cliente;
 			}
 		}
-		return "Nenhum cliente encontrado com este CPF.";
+		return null;
 	}
 
 	@Override

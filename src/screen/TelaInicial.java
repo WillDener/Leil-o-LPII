@@ -23,18 +23,19 @@ public class TelaInicial {
 			
 			CadastroInstituicao cadastroInstituicao = new CadastroInstituicao();
 			
-			System.out.println("Escolha uma das opera��es abaixo:");
+			System.out.println("Escolha uma das operações abaixo:");
 			System.out.println("1 - Clientes");
-			System.out.println("2 - Institui��es");
+			System.out.println("2 - Instituições");
 			System.out.println("3 - Produtos");
-			System.out.println("4 - Leil�es");		
+			System.out.println("4 - Leilões");		
 			
-			System.out.println("Insira sua op��o: ");		
+			System.out.println("Insira sua opção: ");		
 			escolha = input.nextInt();
 			System.out.println();
 			
 			switch (escolha) {
 			case 1:
+				System.out.println("(╯°□°)╯︵ ┻━┻ CLIENTES\n");
 				telaClientes.opcoesClientes();
 				break;
 				

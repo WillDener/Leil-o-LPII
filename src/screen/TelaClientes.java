@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import services.Confirmacao;
-import services.Input;
+import services.EntradaDados;
 
 @NoArgsConstructor
 @Getter
@@ -23,12 +23,14 @@ public class TelaClientes {
 		do {
 			System.out.println("Escolha uma das operações abaixo:");
 			System.out.println("1 - Cadastrar cliente");
-			System.out.println("2 - Alterar cliente");
-			System.out.println("3 - Excluir cliente");
-			System.out.println("4 - Visualizar clientes cadastrados");		
+			System.out.println("2 - Consutar cliente");
+			System.out.println("3 - Atualizar cliente");
+			System.out.println("4 - Excluir cliente");
+			System.out.println("5 - Visualizar clientes cadastrados");
+			System.out.println("6 - Retornar ao menu inicial");
 			
 			System.out.println("Insira sua opção: ");
-			escolha = Input.inputInt();
+			escolha = EntradaDados.inputInt();
 			System.out.println();
 			
 			switch (escolha) {
@@ -37,13 +39,29 @@ public class TelaClientes {
 				break;
 				
 			case 2:
+				consultarCliente();
+				break;
+				
+			case 3:
 				atualizarCliente();
+				break;
+				
+			case 4:
+				excluirCliente();
+				break;
+				
+			case 5:
+				imprimirClientes();
+				break;
+				
+			case 6:
 				break;
 
 			default:
+				System.out.println("Opção inválida.");
 				break;
 			}
-		} while(escolha != 9);
+		} while(escolha != 6);
 	}
 	
 	public void cadastrarCliente() {
@@ -53,35 +71,35 @@ public class TelaClientes {
 		setConfirmacao(false);
 		while (!confirmacao) {
 			System.out.println("Insira o CPF do cliente: ");
-			cliente.setCpf(Input.inputString());
+			cliente.setCpf(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 	 	}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
 			System.out.println("Insira o RG do cliente: ");
-			cliente.setRg(Input.inputString());
+			cliente.setRg(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
 			System.out.println("Insira o nome completo do cliente: ");
-			cliente.setNomeCompleto(Input.inputString());
+			cliente.setNomeCompleto(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
 			System.out.println("Insira o endereço do cliente: ");
-			cliente.setEndereco(Input.inputString());
+			cliente.setEndereco(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
 			System.out.println("Insira o e-mail do cliente: ");
-			cliente.setEmail(Input.inputString());
+			cliente.setEmail(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
@@ -101,65 +119,114 @@ public class TelaClientes {
 		Database.clientes.adicionar(cliente);
 	}
 	
+	public void consultarCliente() {
+		System.out.println("CONSULTAR CLIENTE (╯°□°)╯︵ ┻━┻\n");
+		
+		System.out.println("Digite o CPF do cliente: ");
+		
+		String cpfCliente = EntradaDados.inputString();
+		
+		Cliente clienteDatabase = (Cliente) Database.clientes.consultar(cpfCliente);
+		
+		if(clienteDatabase != null) {
+			System.out.println(clienteDatabase.toString());
+		} else {
+			System.out.println("Nenhum cliente encontrado com este CPF.");
+		}
+	}
+	
 	public void atualizarCliente() {
 		
 		System.out.println("ATUALIZAR CLIENTE (╯°□°)╯︵ ┻━┻\n");
 		
 		System.out.println("Digite o CPF do cliente que será alterado: ");
 		
-		String cpfCliente = Input.inputString();
+		String cpfCliente = EntradaDados.inputString();
 		
-		Database.clientes.consultar(cpfCliente);
+		Cliente clienteDatabase = (Cliente) Database.clientes.consultar(cpfCliente);
 		
-		setConfirmacao(false);
-		while (!confirmacao) {
-			System.out.println("Insira o novo CPF do cliente: ");
-			cliente.setCpf(Input.inputString());
-			setConfirmacao(Confirmacao.confirmar());
-	 	}
-		
-		setConfirmacao(false);
-		while (!confirmacao) {
-			System.out.println("Insira o novo RG do cliente: ");
-			cliente.setRg(Input.inputString());
-			setConfirmacao(Confirmacao.confirmar());
-		}
-		
-		setConfirmacao(false);
-		while (!confirmacao) {
-			System.out.println("Insira o novo nome completo do cliente: ");
-			cliente.setNomeCompleto(Input.inputString());
-			setConfirmacao(Confirmacao.confirmar());
-		}
-		
-		setConfirmacao(false);
-		while (!confirmacao) {
-			System.out.println("Insira o novo endereço do cliente: ");
-			cliente.setEndereco(Input.inputString());
-			setConfirmacao(Confirmacao.confirmar());
-		}
-		
-		setConfirmacao(false);
-		while (!confirmacao) {
-			System.out.println("Insira o novo e-mail do cliente: ");
-			cliente.setEmail(Input.inputString());
-			setConfirmacao(Confirmacao.confirmar());
-		}
-		
-		setConfirmacao(false);
-		while (!confirmacao) {
-			System.out.println("Novos dados do Cliente");
-			System.out.println("\tCPF: " + cliente.getCpf());
-			System.out.println("\tRG: " + cliente.getRg());
-			System.out.println("\tNome completo: " + cliente.getNomeCompleto());
-			System.out.println("\tEndereço: " + cliente.getEndereco());
-			System.out.println("\tE-mail: " + cliente.getEmail());
-			setConfirmacao(Confirmacao.confirmar());
+		if(clienteDatabase != null) {
 			
-			if(!confirmacao) cadastrarCliente();
+			setConfirmacao(false);
+			while (!confirmacao) {
+				System.out.println("Insira o novo CPF do cliente: ");
+				cliente.setCpf(EntradaDados.inputString());
+				setConfirmacao(Confirmacao.confirmar());
+		 	}
+			
+			setConfirmacao(false);
+			while (!confirmacao) {
+				System.out.println("Insira o novo RG do cliente: ");
+				cliente.setRg(EntradaDados.inputString());
+				setConfirmacao(Confirmacao.confirmar());
+			}
+			
+			setConfirmacao(false);
+			while (!confirmacao) {
+				System.out.println("Insira o novo nome completo do cliente: ");
+				cliente.setNomeCompleto(EntradaDados.inputString());
+				setConfirmacao(Confirmacao.confirmar());
+			}
+			
+			setConfirmacao(false);
+			while (!confirmacao) {
+				System.out.println("Insira o novo endereço do cliente: ");
+				cliente.setEndereco(EntradaDados.inputString());
+				setConfirmacao(Confirmacao.confirmar());
+			}
+			
+			setConfirmacao(false);
+			while (!confirmacao) {
+				System.out.println("Insira o novo e-mail do cliente: ");
+				cliente.setEmail(EntradaDados.inputString());
+				setConfirmacao(Confirmacao.confirmar());
+			}
+			
+			setConfirmacao(false);
+			while (!confirmacao) {
+				System.out.println("Novos dados do Cliente");
+				System.out.println("\tCPF: " + cliente.getCpf());
+				System.out.println("\tRG: " + cliente.getRg());
+				System.out.println("\tNome completo: " + cliente.getNomeCompleto());
+				System.out.println("\tEndereço: " + cliente.getEndereco());
+				System.out.println("\tE-mail: " + cliente.getEmail());
+				setConfirmacao(Confirmacao.confirmar());
+				
+				if(!confirmacao) cadastrarCliente();
+			}
+			
+			Database.clientes.atualizar(cpfCliente, cliente);
+		}  else {
+			System.out.println("Nenhum cliente encontrado com este CPF.");
+			return;
 		}
+	}
+	
+	public void excluirCliente() {
 		
-		Database.clientes.atualizar(cpfCliente, cliente);
+		System.out.println("EXCLUIR CLIENTE (╯°□°)╯︵ ┻━┻\n");
+		
+		System.out.println("Digite o CPF do cliente que será excluído: ");
+		
+		String cpfCliente = EntradaDados.inputString();
+		
+		Cliente clienteDatabase = (Cliente) Database.clientes.consultar(cpfCliente);
+		
+		if(clienteDatabase != null) {
+			Database.clientes.remover(cpfCliente);
+			System.out.println("Cliente removido com sucesso.");
+		}
+		else {
+			System.out.println();
+			return;
+		}
+	}
+	
+	public void imprimirClientes() {
+		
+		System.out.println("LISTA DE CLIENTES (╯°□°)╯︵ ┻━┻\n");
+		
+		Database.clientes.imprimir();
 	}
 	
 }

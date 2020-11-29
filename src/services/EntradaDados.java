@@ -4,19 +4,25 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Input {
+public class EntradaDados {
 	
-	private static Scanner input = new Scanner(System.in);
+	private static Scanner input;
 
 	public static String inputString() {
+		input = new Scanner(System.in);
+		
 		return input.nextLine();
 	}
 	
 	public static int inputInt() {
+		input = new Scanner(System.in);
+		
 		return input.nextInt();
 	}
 	
 	public static LocalDateTime inputDataHora() {
+		input = new Scanner(System.in);
+		
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
 		
 		System.out.println("Digite uma data e hora (exemplo: 01/01/2001 18:00): ");
