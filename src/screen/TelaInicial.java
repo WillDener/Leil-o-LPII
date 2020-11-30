@@ -21,7 +21,9 @@ public class TelaInicial {
 		do {
 			TelaClientes telaClientes = new TelaClientes();
 			
-			CadastroInstituicao cadastroInstituicao = new CadastroInstituicao();
+			TelaInstituicoes telaInstituicoes = new TelaInstituicoes();
+			
+			TelaLeilao telaLeilao = new TelaLeilao();
 			
 			System.out.println("Escolha uma das operações abaixo:");
 			System.out.println("1 - Clientes");
@@ -40,7 +42,17 @@ public class TelaInicial {
 				break;
 				
 			case 2:
-				cadastroInstituicao.cadastrarInstituicao();
+				System.out.println("(╯°□°)╯︵ ┻━┻ INSTIUIÇÃO\n");
+				telaInstituicoes.opcoesInstituicoes();
+				break;
+				
+			case 3:
+				
+				break;
+				
+			case 4:
+				System.out.println("(╯°□°)╯︵ ┻━┻ LEILÃO\n");
+				telaLeilao.opcaoLeilao();
 				break;
 
 			default:

@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class EntradaDados {
 	
 	private static Scanner input;
+	
+	private Boolean confirmacao;
 
 	public static String inputString() {
 		input = new Scanner(System.in);
@@ -23,12 +25,12 @@ public class EntradaDados {
 	public static LocalDateTime inputDataHora() {
 		input = new Scanner(System.in);
 		
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		
 		System.out.println("Digite uma data e hora (exemplo: 01/01/2001 18:00): ");
 		String inputDate = input.nextLine();
-		
-		LocalDateTime dateTime = LocalDateTime.parse(inputDate, dateFormat);
+				
+		LocalDateTime dateTime = LocalDateTime.parse(inputDate, dateFormat);		
 		
 		return dateTime;
 	}

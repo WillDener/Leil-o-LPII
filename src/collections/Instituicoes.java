@@ -37,7 +37,7 @@ public class Instituicoes implements CreateReadUpdateDelete {
 			Instituicao instituicaoSave = (Instituicao) instituicao;
 			Object instituicaoSearch = consultar(instituicaoSave.getCnpj());
 				
-			if (instituicaoSearch instanceof String) {
+			if (instituicaoSearch == null) {
 				getInstituicoes().add(instituicaoSave);
 				System.out.println("Instituição cadastrada com sucesso.");
 			} else {
@@ -56,7 +56,7 @@ public class Instituicoes implements CreateReadUpdateDelete {
 				return instituicao;
 			}
 		}
-		return "Nenhuma instituição encontrada com este CNPJ.";
+		return null;
 	}
 
 	@Override
@@ -65,14 +65,14 @@ public class Instituicoes implements CreateReadUpdateDelete {
 			
 		Object instituicaoOld = consultar(cpnj);
 			
-		if (instituicaoOld instanceof Instituicao) {
+		if (instituicaoOld != null) {
 			Instituicao instituicaoOldCasted = (Instituicao) instituicaoOld;
 			
 			instituicaoOldCasted.setCnpj(instituicaoNewCasted.getCnpj());
 			instituicaoOldCasted.setNome(instituicaoNewCasted.getNome());
 			instituicaoOldCasted.setEndereco(instituicaoNewCasted.getEndereco());
 			instituicaoOldCasted.setEmail(instituicaoNewCasted.getEmail());
-		}
+		} 		
 	}
 
 	@Override

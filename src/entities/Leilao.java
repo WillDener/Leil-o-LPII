@@ -12,8 +12,9 @@ import collections.Lances;
 import collections.Produtos;
 import enums.StatusLeilao;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+@NoArgsConstructor
 @Getter
 @Setter
 public class Leilao implements Comparable {
