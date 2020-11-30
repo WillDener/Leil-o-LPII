@@ -2,21 +2,24 @@ package entities;
 
 import enums.TipoImovel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class Imovel extends Produto {
+
+	private String endereco;
+    private TipoImovel tipoImovel;
+    
 	
 	public Imovel(String matricula, String descricao, Double valorMinimoProduto, 
-				   String endereco, TipoImovel tipoImovel) {
+				  String endereco, TipoImovel tipoImovel) {
 		super(matricula, descricao, valorMinimoProduto);
 		setEndereco(endereco);
 		setTipoImovel(tipoImovel);
 	}
-
-	private String endereco;
-    private TipoImovel tipoImovel;
     
 	@Override
 	public String toString() {

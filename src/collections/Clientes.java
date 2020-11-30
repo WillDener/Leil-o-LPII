@@ -65,7 +65,7 @@ public class Clientes implements CreateReadUpdateDelete {
 			
 		Object clienteOld = consultar(cpf);
 			
-		if (clienteOld instanceof Cliente) {
+		if (clienteOld != null) {
 			Cliente clienteOldCasted = (Cliente) clienteOld;
 			
 			clienteOldCasted.setCpf(clienteNewCasted.getCpf());
@@ -80,7 +80,7 @@ public class Clientes implements CreateReadUpdateDelete {
 	public Boolean remover(String cpf) {
 		Object cliente = consultar(cpf);
 			
-		if (cliente instanceof Cliente) {
+		if (cliente != null) {
 			return clientes.remove(cliente);
 		}
 		return false;

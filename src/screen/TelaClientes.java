@@ -14,7 +14,7 @@ import services.EntradaDados;
 public class TelaClientes {
 	
 	private Boolean confirmacao;
-	private Cliente cliente = new Cliente();
+	private Cliente cliente;
 	
 	public void opcoesClientes() {
 		
@@ -65,6 +65,8 @@ public class TelaClientes {
 	}
 	
 	public void cadastrarCliente() {
+		
+		cliente = new Cliente();
 		
 		System.out.println("CADASTRAR CLIENTE (╯°□°)╯︵ ┻━┻\n");
 		
@@ -120,6 +122,7 @@ public class TelaClientes {
 	}
 	
 	public void consultarCliente() {
+		
 		System.out.println("CONSULTAR CLIENTE (╯°□°)╯︵ ┻━┻\n");
 		
 		System.out.println("Digite o CPF do cliente: ");
@@ -136,6 +139,8 @@ public class TelaClientes {
 	}
 	
 	public void atualizarCliente() {
+		
+		cliente = new Cliente();
 		
 		System.out.println("ATUALIZAR CLIENTE (╯°□°)╯︵ ┻━┻\n");
 		

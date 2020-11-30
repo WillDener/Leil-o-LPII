@@ -18,16 +18,17 @@ public class TelaInicial {
 		
 		int escolha;
 		
+		TelaClientes telaClientes = new TelaClientes();
+		TelaProdutos telaProdutos = new TelaProdutos();
+		CadastroInstituicao cadastroInstituicao = new CadastroInstituicao();
+		
 		do {
-			TelaClientes telaClientes = new TelaClientes();
-			
-			CadastroInstituicao cadastroInstituicao = new CadastroInstituicao();
-			
 			System.out.println("Escolha uma das operações abaixo:");
 			System.out.println("1 - Clientes");
 			System.out.println("2 - Instituições");
 			System.out.println("3 - Produtos");
-			System.out.println("4 - Leilões");		
+			System.out.println("4 - Leilões");
+			System.out.println("5 - Sair");
 			
 			System.out.println("Insira sua opção: ");		
 			escolha = input.nextInt();
@@ -43,9 +44,19 @@ public class TelaInicial {
 				cadastroInstituicao.cadastrarInstituicao();
 				break;
 
+			case 3:
+				System.out.println("(╯°□°)╯︵ ┻━┻ PRODUTOS\n");
+				telaProdutos.opcoesProdutos();
+				
+			case 5:
+				System.out.println("Tudo bem, até logo! ¯\\_(ツ)_/¯");
+				System.exit(0);
+				break;
+				
 			default:
+				System.out.println("Opção inválida.");
 				break;
 			}
-		} while(escolha != 9);
+		} while(escolha != 5);
 	}
 }

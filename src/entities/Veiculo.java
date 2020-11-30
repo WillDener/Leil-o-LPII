@@ -2,11 +2,18 @@ package entities;
 
 import enums.TipoVeiculo;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class Veiculo extends Produto {
+	
+	private String placa;
+	private Integer kilometragem;
+	private String cor;
+	private TipoVeiculo tipoVeiculo;
 	
 	public Veiculo(String matricula, String descricao, Double valorMinimoProduto,
 				   String placa, Integer kilometragem, String cor, TipoVeiculo tipoVeiculo) {
@@ -16,11 +23,6 @@ public class Veiculo extends Produto {
 		setCor(cor);
 		setTipoVeiculo(tipoVeiculo);
 	}
-
-	private String placa;
-	private Integer kilometragem;
-	private String cor;
-	private TipoVeiculo tipoVeiculo;
     
     @Override
 	public String toString() {
