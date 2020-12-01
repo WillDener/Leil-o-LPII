@@ -59,7 +59,7 @@ public class TelaLeilao {
 				break;
 			
 			case 2:
-				registrarLance();
+				vincularDadosLeilao();
 				break;
 				
 			case 3:
@@ -123,7 +123,8 @@ public class TelaLeilao {
 			int escolha = EntradaDados.inputInt();
 			if (escolha == 1) {
 				System.out.println("Cadastre a instituição: ");
-				leilao.setInstituicao(telaInstituicoes.cadastrarInstituicao());;			
+				leilao.setInstituicao(telaInstituicoes.cadastrarInstituicao());
+				setConfirmacao(Confirmacao.confirmar());
 			}
 			if (escolha == 2) {
 				System.out.println("Selecione a instituição de acordo com o cnpj cadastrado: ");
@@ -151,41 +152,37 @@ public class TelaLeilao {
 		String id = EntradaDados.inputString();
 		Leilao	encontrado =(Leilao) Database.leiloes.consultar(id);
 		if(encontrado != null) {
-			System.out.println("Escolha:\n "
-					+ "1 - Cadastrar Produto"
+			System.out.println("Escolha:\n"
+					+ "1 - Cadastrar Produto\n"
 					+ "2 - Cadastrar Cliente");
 			int escolha = EntradaDados.inputInt();			
-			try {
-				if(escolha == 1) {
-					System.out.println("1 - Deseja cadastrar um novo produto ao leilão \n"
-							+ "2 - deseja selecionar um produto já cadastrado no sistema");
-					int escolha2 = EntradaDados.inputInt();
-					if (escolha2 == 1) {
-						System.out.println("Cadastre os produtos que estarão no leilão: ");
-						encontrado.getProdutos().adicionar(telaProdutos.cadastrarProduto());						
-					}
-					if (escolha2 == 2) {
-						System.out.println("Selecione o produto de acordo com a matricula do produto cadastrado: ");
-						String var = EntradaDados.inputString();
-						leilao.getProdutos().adicionar(Database.produtos.consultar(var));
-					}
+			if(escolha == 1) {
+				System.out.println("1 - Deseja cadastrar um novo produto ao leilão \n"
+						+ "2 - deseja selecionar um produto já cadastrado no sistema");
+				int escolha2 = EntradaDados.inputInt();
+				if (escolha2 == 1) {
+					System.out.println("Cadastre os produtos que estarão no leilão: ");
+					encontrado.getProdutos().adicionar(telaProdutos.cadastrarProduto());						
 				}
-				if (escolha == 2) {
-					System.out.println("1 - Deseja cadastrar um novo cliente ao leilão \n"
-							+ "2 - deseja selecionar um cliente já cadastrado no sistema");
-					int escolha3 = EntradaDados.inputInt();
-					if (escolha3 == 1) {
-						System.out.println("Cadastre o cliente: ");
-						leilao.getClientes().adicionar(telaClientes.cadastrarCliente());									
-					}
-					if (escolha3 == 2) {
-						System.out.println("Selecione o cliente de acordo com o cpf cadastrado: ");
-						String var = EntradaDados.inputString();
-						leilao.getClientes().adicionar(Database.clientes.consultar(var));						
-					}
+				if (escolha2 == 2) {
+					System.out.println("Selecione o produto de acordo com a matricula do produto cadastrado: ");
+					String var = EntradaDados.inputString();
+					leilao.getProdutos().adicionar(Database.produtos.consultar(var));
 				}
-			} catch (Exception e) {
-				System.out.println("Operação inválida");
+			}
+			if (escolha == 2) {
+				System.out.println("1 - Deseja cadastrar um novo cliente ao leilão \n"
+						+ "2 - deseja selecionar um cliente já cadastrado no sistema");
+				int escolha3 = EntradaDados.inputInt();
+				if (escolha3 == 1) {
+					System.out.println("Cadastre o cliente: ");
+					leilao.getClientes().adicionar(telaClientes.cadastrarCliente());									
+				}
+				if (escolha3 == 2) {
+					System.out.println("Selecione o cliente de acordo com o cpf cadastrado: ");
+					String var = EntradaDados.inputString();
+					leilao.getClientes().adicionar(Database.clientes.consultar(var));						
+				}
 			}
 		}
 
@@ -247,15 +244,25 @@ public class TelaLeilao {
 				+ "3 - Detalhes de um leilao");
 		int escolha = EntradaDados.inputInt();
 		try {
-			if (escolha == 1) Database.leiloes.ordenarLeiloesPorData().toString();
-			if (escolha == 2) Database.leiloes.ordenarLeiloesPeloId().toString();
+			if (escolha == 1) {
+				Database.leiloes.ordenarLeiloesPorData();
+				Database.leiloes.imprimir();
+			}
+			if (escolha == 2) {
+				Database.leiloes.ordenarLeiloesPeloId();
+				Database.leiloes.imprimir();
+			}
 			if (escolha == 3) {
 				System.out.println("Informe o id do leilao para maiores detalhes: ");
 				String id = EntradaDados.inputString();
 				try {
-					Leilao detalhes = (Leilao) Database.leiloes.consultar(id);
-					detalhes.updateStatusLeilao();
-					detalhes.toString();
+					Leilao detalhes = (Leilao) Database.leiloes.consultar(id);					
+					if (detalhes != null) {
+						detalhes.toString();
+					} else {
+						System.out.println("Nenhum leilão encontrado");
+					}
+					
 				} catch (Exception e) {
 					System.out.println("falha na operação, tente novamente!");
 				}

@@ -91,7 +91,7 @@ public class Produtos implements CreateReadUpdateDelete {
 			Produto produtoSave = (Produto) produto;
 			Object produtoSearch = consultar(produtoSave.getMatricula());
 				
-			if(produtoSearch instanceof String) {
+			if(produtoSearch == null) {
 				getProdutos().add(produtoSave);
 				System.out.println("Imóvel ou veículo cadastrado com sucesso.");
 			} else {
@@ -116,7 +116,7 @@ public class Produtos implements CreateReadUpdateDelete {
 				}
 			}
 		}
-		return "Nenhum produto encontrado com esta matrícula.";
+		return null;
 	}
 
 	@Override
@@ -150,7 +150,7 @@ public class Produtos implements CreateReadUpdateDelete {
 	public Boolean remover(String matricula) {
 		Object produto = consultar(matricula);
 			
-		if (produto instanceof Produto) {
+		if (produto != null) {
 			return produtos.remove(produto);
 		}
 		return false;

@@ -20,7 +20,7 @@ public class TelaInicial {
 		
 		TelaClientes telaClientes = new TelaClientes();
 		TelaProdutos telaProdutos = new TelaProdutos();
-		CadastroInstituicao cadastroInstituicao = new CadastroInstituicao();
+		TelaInstituicoes telaInstituicoes = new TelaInstituicoes();		
 		TelaLeilao telaLeilao = new TelaLeilao();
 		
 		do {
@@ -43,7 +43,7 @@ public class TelaInicial {
 				
 			case 2:
 				System.out.println("(╯°□°)╯︵ ┻━┻ INSTITUIÇÃO\n");
-				cadastroInstituicao.cadastrarInstituicao();
+				telaInstituicoes.opcoesInstituicoes();
 				break;
 
 			case 3:

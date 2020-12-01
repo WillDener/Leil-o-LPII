@@ -19,7 +19,7 @@ public class Main {
 		
 		MonitoraLeiloes.AtualizaLeiloes();
 		
-		System.out.println("( Í¡Â° ÍœÊ– Í¡Â°) BEM VINDO AO SISTEMA DE LEILÃƒO\n");
+		System.out.println("BEM VINDO AO SISTEMA DE LEILÃO\n");
 		
 		TelaInicial telaInicial = new TelaInicial();
 		

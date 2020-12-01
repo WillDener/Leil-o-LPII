@@ -15,10 +15,9 @@ public class MonitoraLeiloes {
 		
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
-			public void run() {
-				Leiloes leiloes = Database.leiloes;
-				if (leiloes.getLeiloes().size() > 0) {
-					for (Leilao leilao : leiloes.getLeiloes()) {
+			public void run() {				
+				if (Database.leiloes.getLeiloes().size() > 0) {
+					for (Leilao leilao : Database.leiloes.getLeiloes()) {
 						leilao.updateStatusLeilao();
 					}
 				}

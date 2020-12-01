@@ -31,13 +31,13 @@ public class TelaProdutos {
 			System.out.println("5 - Visualizar produto cadastrados");
 			System.out.println("6 - Retornar ao menu inicial");
 			
-			System.out.println("Insira sua opÃ§Ã£o: ");
+			System.out.println("Insira sua Opção: ");
 			escolha = EntradaDados.inputInt();
 			System.out.println();
 			
 			switch (escolha) {
 			case 1:
-				System.out.println("CADASTRAR PRODUTO (â•¯Â°â–¡Â°)â•¯ï¸µ â”»â”�â”»\n");
+				System.out.println("CADASTRAR PRODUTO \n");
 				Database.produtos.adicionar(cadastrarProduto());
 				break;
 				
@@ -45,7 +45,7 @@ public class TelaProdutos {
 				break;
 
 			default:
-				System.out.println("OpÃ§Ã£o invÃ¡lida.");
+				System.out.println("Opção inválida.");
 				break;
 			}
 		} while(escolha != 6);
@@ -53,21 +53,23 @@ public class TelaProdutos {
 	
 	public Object cadastrarProduto() {
 		
-		System.out.println("Qual tipo de produto vocÃª deseja cadastrar?");
-		System.out.println("1 - ImÃ³vel");
-		System.out.println("2 - VeÃ­culo");
+		System.out.println("Qual tipo de produto você deseja cadastrar?");
+		System.out.println("1 - imóvel");
+		System.out.println("2 - veículo");
 		
-		System.out.println("Insira sua opÃ§Ã£o: ");
+		System.out.println("Insira sua Opção: ");
 		int tipoProduto = EntradaDados.inputInt();
 		System.out.println();
 		
 		if (tipoProduto == 1) {
-			cadastrarImovel();
-		} else if (tipoProduto == 2) {
+			return cadastrarImovel();
+		} 
+		
+		if (tipoProduto == 2) {
 			return cadastrarVeiculo();
-		} else {
-			System.out.println("OpÃ§Ã£o invÃ¡lida, tente novamente.");
-			return cadastrarProduto();
+		} 
+		if(tipoProduto != 1 && tipoProduto != 2){
+			System.out.println("Opção inválida, tente novamente.");			
 		}
 		return null;
 	}
@@ -76,32 +78,32 @@ public class TelaProdutos {
 		
 		imovel = new Imovel();
 		
-		System.out.println("CADASTRAR IMÃ“VEL (â•¯Â°â–¡Â°)â•¯ï¸µ â”»â”�â”»\n");
+		System.out.println("CADASTRAR IMÓVEL \n");
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira a matrÃ­cula do produto: ");
+			System.out.println("Insira a Matricula do produto: ");
 			imovel.setMatricula(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 	 	}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira uma descriÃ§Ã£o do produto: ");
+			System.out.println("Insira uma descrição do produto: ");
 			imovel.setDescricao(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira o valor mÃ­nimo do produto: ");
+			System.out.println("Insira o valor minimo do produto: ");
 			imovel.setValorMinimoProduto(EntradaDados.inputDouble());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira o endereÃ§o do imÃ³vel: ");
+			System.out.println("Insira o Endereço do imóvel: ");
 			imovel.setEndereco(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 		}
@@ -114,12 +116,12 @@ public class TelaProdutos {
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Dados do imÃ³vel");
-			System.out.println("\tMatrÃ­cula: " + imovel.getMatricula());
-			System.out.println("\tDescriÃ§Ã£o: " + imovel.getDescricao());
-			System.out.println("\tValor mÃ­nimo: " + imovel.getValorMinimoProduto());
-			System.out.println("\tEndereÃ§o: " + imovel.getEndereco());
-			System.out.println("\tTipo do imÃ³vel: " + imovel.getTipoImovel().toString());
+			System.out.println("Dados do imóvel");
+			System.out.println("\tMatricula: " + imovel.getMatricula());
+			System.out.println("\tdescrição: " + imovel.getDescricao());
+			System.out.println("\tValor máximo: " + imovel.getValorMinimoProduto());
+			System.out.println("\tEndereço: " + imovel.getEndereco());
+			System.out.println("\tTipo do imóvel: " + imovel.getTipoImovel().toString());
 			setConfirmacao(Confirmacao.confirmar());
 			
 			if(!confirmacao) cadastrarImovel();
@@ -133,46 +135,46 @@ public class TelaProdutos {
 		
 		veiculo = new Veiculo();
 		
-		System.out.println("CADASTRAR VEÃ�CULO (â•¯Â°â–¡Â°)â•¯ï¸µ â”»â”�â”»\n");
+		System.out.println("CADASTRAR VEICULO \n");
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira a matrÃ­cula do produto: ");
+			System.out.println("Insira a Matricula do produto: ");
 			veiculo.setMatricula(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 	 	}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira uma descriÃ§Ã£o do produto: ");
+			System.out.println("Insira uma descrição do produto: ");
 			veiculo.setDescricao(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira o valor mÃ­nimo do produto: ");
+			System.out.println("Insira o valor máximo do produto: ");
 			veiculo.setValorMinimoProduto(EntradaDados.inputDouble());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira a placa do veÃ­culo: ");
+			System.out.println("Insira a placa do veículo: ");
 			veiculo.setPlaca(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira a kilometragem atual do veÃ­culo: ");
+			System.out.println("Insira a kilometragem atual do veículo: ");
 			veiculo.setKilometragem(EntradaDados.inputInt());
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira a cor do veÃ­culo: ");
+			System.out.println("Insira a cor do veículo: ");
 			veiculo.setCor(EntradaDados.inputString());
 			setConfirmacao(Confirmacao.confirmar());
 		}
@@ -185,14 +187,14 @@ public class TelaProdutos {
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Dados do veÃ­culo");
-			System.out.println("\tMatrÃ­cula: " + veiculo.getMatricula());
-			System.out.println("\tDescriÃ§Ã£o: " + veiculo.getDescricao());
-			System.out.println("\tValor mÃ­nimo: " + veiculo.getValorMinimoProduto());
+			System.out.println("Dados do veículo");
+			System.out.println("\tMatricula: " + veiculo.getMatricula());
+			System.out.println("\tdescrição: " + veiculo.getDescricao());
+			System.out.println("\tValor máximo: " + veiculo.getValorMinimoProduto());
 			System.out.println("\tPlaca: " + veiculo.getPlaca());
 			System.out.println("\tKilometragem: " + veiculo.getKilometragem());
 			System.out.println("\tCor: " + veiculo.getCor());
-			System.out.println("\tTipo do veÃ­culo: " + veiculo.getTipoVeiculo().toString());
+			System.out.println("\tTipo do veículo: " + veiculo.getTipoVeiculo().toString());
 			setConfirmacao(Confirmacao.confirmar());
 			
 			if(!confirmacao) cadastrarImovel();

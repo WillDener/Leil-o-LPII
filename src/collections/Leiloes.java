@@ -3,6 +3,7 @@ package collections;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import database.Database;
 import entities.Leilao;
 import interfaces.CreateReadUpdateDelete;
 import lombok.Getter;
@@ -40,7 +41,7 @@ public class Leiloes implements CreateReadUpdateDelete {
 			Leilao leilaoSave = (Leilao) leilao;
 			Object leilaoSearch = consultar(leilaoSave.getId());
 			
-			if (leilaoSearch instanceof String) {
+			if (leilaoSearch == null) {
 				setIdLeilao(getIdLeilao() + 1);
 				leilaoSave.setId(getIdLeilao().toString());
 				getLeiloes().add(leilaoSave);
@@ -61,7 +62,7 @@ public class Leiloes implements CreateReadUpdateDelete {
 				return leilao;
 			}
 		}
-		return "Nenhum leilão encontrado com este ID.";
+		return null;
 	}
 
 	@Override
@@ -85,24 +86,24 @@ public class Leiloes implements CreateReadUpdateDelete {
 	public Boolean remover(String id) {
 		Object leilao = consultar(id);
 			
-		if (leilao instanceof Leilao) {
+		if (leilao == null) {
 			return leiloes.remove(leilao);
 		}
 		return false;
 	}
 	
-	public LinkedList<Leilao> ordenarLeiloesPorData() {
-		LeilaoComparatorData leilaoComparator = new LeilaoComparatorData();
-		Collections.sort(leiloes, leilaoComparator);
-		
-		return leiloes;
+	public void ordenarLeiloesPorData() {
+		if (Database.leiloes.getLeiloes().size() > 0) {
+			LeilaoComparatorData leilaoComparator = new LeilaoComparatorData();
+			Collections.sort(Database.leiloes.getLeiloes(), leilaoComparator);
+		}				
 	}
 	
-	public LinkedList<Leilao> ordenarLeiloesPeloId() {
-		LeilaoComparatorId leilaoComparator = new LeilaoComparatorId();
-		Collections.sort(leiloes, leilaoComparator);
-		
-		return leiloes;
+	public void ordenarLeiloesPeloId() {
+		if (Database.leiloes.getLeiloes().size() > 0) {
+			LeilaoComparatorId leilaoComparator = new LeilaoComparatorId();
+			Collections.sort(Database.leiloes.getLeiloes(), leilaoComparator);
+		}		
 	}
 
 }
