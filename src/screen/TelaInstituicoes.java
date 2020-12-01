@@ -142,7 +142,7 @@ public class TelaInstituicoes {
 			if (Database.instituicoes.consultar(cnpjInstituicao) != null) {
 				Database.instituicoes.atualizar(cnpjInstituicao, cadastrarInstituicao());
 			} else {
-				System.out.println("Nenhum cliente encontrado com este CPF.");
+				System.out.println("Nenhuma instituição encontrada com este CNPJ.");
 			}
 						
 		}

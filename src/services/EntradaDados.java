@@ -30,16 +30,12 @@ public class EntradaDados {
 	}
 	
 	public static LocalDateTime inputDataHora() {
-		input = new Scanner(System.in);
-		
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
-		
+		input = new Scanner(System.in);		
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		System.out.println("Digite uma data e hora (exemplo: 01/01/2001 18:00): ");
 		String inputDate = inputString();
-		
-		LocalDateTime dateTime = LocalDateTime.parse(inputDate, dateFormat);
-		
-		return dateTime;
+		LocalDateTime dateTime = LocalDateTime.parse(inputDate, dateFormat);	
+		return dateTime;		
 	}
 	
 	public static TipoImovel inputTipoImovel() {

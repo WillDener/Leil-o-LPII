@@ -12,7 +12,7 @@ public class Produto {
 	private String matricula;
     private String descricao;
 	private Double valorMinimoProduto;
-	private Double valorFinalProduto = 0.0;
+	private Lance lance;
 	
 	public Produto(String matricula, String descricao, Double valorMinimoProduto) {
 		setMatricula(matricula);

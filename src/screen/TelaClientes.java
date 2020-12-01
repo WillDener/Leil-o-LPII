@@ -35,7 +35,7 @@ public class TelaClientes {
 			
 			switch (escolha) {
 			case 1:
-				cadastrarCliente();
+				Database.clientes.adicionar(cadastrarCliente());
 				break;
 				
 			case 2:
@@ -64,7 +64,7 @@ public class TelaClientes {
 		} while(escolha != 6);
 	}
 	
-	public void cadastrarCliente() {
+	public Cliente cadastrarCliente() {
 		
 		cliente = new Cliente();
 		
@@ -118,7 +118,7 @@ public class TelaClientes {
 			if(!confirmacao) cadastrarCliente();
 		}
 		
-		Database.clientes.adicionar(cliente);
+		return cliente;
 	}
 	
 	public void consultarCliente() {
@@ -146,64 +146,12 @@ public class TelaClientes {
 		
 		System.out.println("Digite o CPF do cliente que será alterado: ");
 		
-		String cpfCliente = EntradaDados.inputString();
+		String cpfCliente = EntradaDados.inputString();			
 		
-		Cliente clienteDatabase = (Cliente) Database.clientes.consultar(cpfCliente);
-		
-		if(clienteDatabase != null) {
-			
-			setConfirmacao(false);
-			while (!confirmacao) {
-				System.out.println("Insira o novo CPF do cliente: ");
-				cliente.setCpf(EntradaDados.inputString());
-				setConfirmacao(Confirmacao.confirmar());
-		 	}
-			
-			setConfirmacao(false);
-			while (!confirmacao) {
-				System.out.println("Insira o novo RG do cliente: ");
-				cliente.setRg(EntradaDados.inputString());
-				setConfirmacao(Confirmacao.confirmar());
-			}
-			
-			setConfirmacao(false);
-			while (!confirmacao) {
-				System.out.println("Insira o novo nome completo do cliente: ");
-				cliente.setNomeCompleto(EntradaDados.inputString());
-				setConfirmacao(Confirmacao.confirmar());
-			}
-			
-			setConfirmacao(false);
-			while (!confirmacao) {
-				System.out.println("Insira o novo endereço do cliente: ");
-				cliente.setEndereco(EntradaDados.inputString());
-				setConfirmacao(Confirmacao.confirmar());
-			}
-			
-			setConfirmacao(false);
-			while (!confirmacao) {
-				System.out.println("Insira o novo e-mail do cliente: ");
-				cliente.setEmail(EntradaDados.inputString());
-				setConfirmacao(Confirmacao.confirmar());
-			}
-			
-			setConfirmacao(false);
-			while (!confirmacao) {
-				System.out.println("Novos dados do Cliente");
-				System.out.println("\tCPF: " + cliente.getCpf());
-				System.out.println("\tRG: " + cliente.getRg());
-				System.out.println("\tNome completo: " + cliente.getNomeCompleto());
-				System.out.println("\tEndereço: " + cliente.getEndereco());
-				System.out.println("\tE-mail: " + cliente.getEmail());
-				setConfirmacao(Confirmacao.confirmar());
-				
-				if(!confirmacao) cadastrarCliente();
-			}
-			
-			Database.clientes.atualizar(cpfCliente, cliente);
-		}  else {
+		if(Database.clientes.consultar(cpfCliente) != null) {
+			Database.clientes.atualizar(cpfCliente, cadastrarCliente());			
+		} else {
 			System.out.println("Nenhum cliente encontrado com este CPF.");
-			return;
 		}
 	}
 	
