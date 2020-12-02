@@ -48,7 +48,7 @@ public class Leilao implements Comparable {
 							resGanhador = resGanhador + "\n" + 
 									"Produto: "+ produto.toString() +  "\n" +
 									"Cliente Ganhador: " + produto.getLances().getLances().getLast().getCliente().toString() +  "\n" +
-									"Valor: " + produto.getLances().getLances().getLast().getValor() +"\n\n" ;
+									"Valor: " + produto.getLances().getLances().getLast().getValor().toString() +"\n\n" ;
 						} else {
 							resNA = resNA + "\n" + 
 									"lance: N/A \n";

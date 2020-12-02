@@ -2,6 +2,7 @@ package services;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 
 import enums.TipoImovel;
@@ -25,6 +26,7 @@ public class EntradaDados {
 	
 	public static Double inputDouble() {
 		input = new Scanner(System.in);
+		input.useLocale(Locale.ENGLISH);
 		
 		return input.nextDouble();
 	}

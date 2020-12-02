@@ -29,7 +29,7 @@ public class Imovel extends Produto {
 		       "Valor mínimo do imóvel: " + getValorMinimoProduto() + ",\n" +
 		       "Tipo do imóvel: " + getTipoImovel().toString() + ",\n"+
 		       "Quantidade Lances: " + getLances().getLances().size() + ",\n"+
-		       "Lances: " + getLances().getLances().toString()) + ".\n";
+		       "Lances: " + getLances().toString()) + ".\n";
 	}
 	
 }

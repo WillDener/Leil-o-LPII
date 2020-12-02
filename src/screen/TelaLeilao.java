@@ -197,22 +197,23 @@ public class TelaLeilao {
 			
 			setConfirmacao(false);
 			while(!confirmacao) {
-				System.out.println("Informe o CPF do cliente já registrado no leilão: ");
-				String cpf = EntradaDados.inputString();
-				System.out.println("Informe a matricula do produto já registrado no leilão: ");
-				String matricula = EntradaDados.inputString();
-				System.out.println("Informe o valor do lance: ");
-				Double valor = EntradaDados.inputDouble();
-				Produto produto = (Produto) leilao.getProdutos().consultar(matricula);
-				if (produto == null) System.out.println("produto não encontrado");
-				Cliente cliente = (Cliente) leilao.getClientes().consultar(cpf);
-				if (cliente == null) System.out.println("cliente não encontrado");
-				produto.getLances().adicionar(new Lance(cliente, produto, valor));
-				
-				System.out.println(produto.toString());
-				System.out.println(cliente.toString());
-				
-				setConfirmacao(Confirmacao.confirmar());
+				System.out.println("Informe o ID do Leilão onde deseja efetuar o Lance: ");
+				String id = EntradaDados.inputString();
+				Leilao leilao = (Leilao) Database.leiloes.consultar(id);
+				if(leilao != null) {
+					System.out.println("Informe o CPF do cliente já registrado no leilão: ");
+					String cpf = EntradaDados.inputString();
+					System.out.println("Informe a matricula do produto já registrado no leilão: ");
+					String matricula = EntradaDados.inputString();
+					System.out.println("Informe o valor do lance: ");
+					Double valor = EntradaDados.inputDouble();
+					Produto produto = (Produto) leilao.getProdutos().consultar(matricula);
+					if (produto == null) System.out.println("produto não encontrado");
+					Cliente cliente = (Cliente) leilao.getClientes().consultar(cpf);
+					if (cliente == null) System.out.println("cliente não encontrado");
+					produto.getLances().adicionar(new Lance(cliente, produto, valor));
+					setConfirmacao(Confirmacao.confirmar());
+				}
 			}			
 		} else {
 			System.out.println("Nenhum leilão disponivel no momento!");

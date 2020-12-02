@@ -122,7 +122,7 @@ public class TelaProdutos {
 			System.out.println("Dados do imóvel");
 			System.out.println("\tMatricula: " + imovel.getMatricula());
 			System.out.println("\tdescrição: " + imovel.getDescricao());
-			System.out.println("\tValor máximo: " + imovel.getValorMinimoProduto());
+			System.out.println("\tValor mínimo: " + imovel.getValorMinimoProduto().toString());
 			System.out.println("\tEndereço: " + imovel.getEndereco());
 			System.out.println("\tTipo do imóvel: " + imovel.getTipoImovel().toString());			
 			setConfirmacao(Confirmacao.confirmar());
@@ -156,7 +156,7 @@ public class TelaProdutos {
 		
 		setConfirmacao(false);
 		while (!confirmacao) {
-			System.out.println("Insira o valor máximo do produto: ");
+			System.out.println("Insira o valor mínimo do produto: ");
 			veiculo.setValorMinimoProduto(EntradaDados.inputDouble());
 			setConfirmacao(Confirmacao.confirmar());
 		}
@@ -195,7 +195,7 @@ public class TelaProdutos {
 			System.out.println("Dados do veículo");
 			System.out.println("\tMatricula: " + veiculo.getMatricula());
 			System.out.println("\tdescrição: " + veiculo.getDescricao());
-			System.out.println("\tValor máximo: " + veiculo.getValorMinimoProduto());
+			System.out.println("\tValor mínimo: " + veiculo.getValorMinimoProduto().toString());
 			System.out.println("\tPlaca: " + veiculo.getPlaca());
 			System.out.println("\tKilometragem: " + veiculo.getKilometragem());
 			System.out.println("\tCor: " + veiculo.getCor());

@@ -34,7 +34,7 @@ public class Veiculo extends Produto {
 		       "Valor mínimo do veículo: " + getValorMinimoProduto() + ",\n" +
 		       "Tipo do imóvel: " + getTipoVeiculo().toString() + ",\n" + 
 		       "Quantidade Lances: " + getLances().getLances().size() + ",\n"+
-		       "Lances: " + getLances().getLances().toString()) + ".\n";
+		       "Lances: " + getLances().toString()) + ".\n";
 	}
     
 }
