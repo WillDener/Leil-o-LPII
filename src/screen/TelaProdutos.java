@@ -1,5 +1,6 @@
 package screen;
 
+import collections.Lances;
 import database.Database;
 import entities.Imovel;
 import entities.Veiculo;
@@ -27,7 +28,7 @@ public class TelaProdutos {
 			System.out.println("1 - Cadastrar produto");
 			System.out.println("2 - Consutar produto");
 			System.out.println("3 - Atualizar produto");
-			System.out.println("4 - Excluir produto");
+			System.out.println("4 - Excluir produto");			
 			System.out.println("5 - Visualizar produto cadastrados");
 			System.out.println("6 - Retornar ao menu inicial");
 			
@@ -114,6 +115,8 @@ public class TelaProdutos {
 			setConfirmacao(Confirmacao.confirmar());
 		}
 		
+		imovel.setLances(new Lances());		
+		
 		setConfirmacao(false);
 		while (!confirmacao) {
 			System.out.println("Dados do imóvel");
@@ -121,7 +124,7 @@ public class TelaProdutos {
 			System.out.println("\tdescrição: " + imovel.getDescricao());
 			System.out.println("\tValor máximo: " + imovel.getValorMinimoProduto());
 			System.out.println("\tEndereço: " + imovel.getEndereco());
-			System.out.println("\tTipo do imóvel: " + imovel.getTipoImovel().toString());
+			System.out.println("\tTipo do imóvel: " + imovel.getTipoImovel().toString());			
 			setConfirmacao(Confirmacao.confirmar());
 			
 			if(!confirmacao) cadastrarImovel();
@@ -184,6 +187,8 @@ public class TelaProdutos {
 			veiculo.setTipoVeiculo(EntradaDados.inputTipoVeiculo());
 			setConfirmacao(Confirmacao.confirmar());
 		}
+		
+		veiculo.setLances(new Lances());
 		
 		setConfirmacao(false);
 		while (!confirmacao) {

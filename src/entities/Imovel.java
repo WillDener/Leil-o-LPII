@@ -27,7 +27,9 @@ public class Imovel extends Produto {
 			   "Endereço do imóvel: " + getEndereco() + ",\n" +
 		       "Descrição do imóvel: " + getDescricao() + ",\n" +
 		       "Valor mínimo do imóvel: " + getValorMinimoProduto() + ",\n" +
-		       "Tipo do imóvel: " + getTipoImovel().toString()) + ".\n\n";
+		       "Tipo do imóvel: " + getTipoImovel().toString() + ",\n"+
+		       "Quantidade Lances: " + getLances().getLances().size() + ",\n"+
+		       "Lances: " + getLances().getLances().toString()) + ".\n";
 	}
 	
 }

@@ -40,13 +40,13 @@ public class EntradaDados {
 	
 	public static TipoImovel inputTipoImovel() {
 		
-		System.out.println("Qual o tipo do im√≥vel?");
+		System.out.println("Qual o tipo do imÛvel?");
 		System.out.println("1 - " + TipoImovel.APARTAMENTO.toString());
 		System.out.println("2 - " + TipoImovel.CASA.toString());
 		System.out.println("3 - " + TipoImovel.EDIFICIO.toString());
 		System.out.println("4 - " + TipoImovel.TERRENO.toString());
 		
-		System.out.println("Insira sua op√ß√£o: ");
+		System.out.println("Insira sua opÁ„o: ");
 		int tipoProduto = inputInt();
 		
 		switch (tipoProduto) {
@@ -59,7 +59,7 @@ public class EntradaDados {
 		case 4:
 			return TipoImovel.TERRENO;
 		default:
-			System.out.println("Op√ß√£o inv√°lida. Tente novamente.");
+			System.out.println("OpÁ„o inv·lida . Tente novamente.");
 			inputTipoImovel();
 		}
 		return null;
@@ -67,11 +67,11 @@ public class EntradaDados {
 	
 public static TipoVeiculo inputTipoVeiculo() {
 		
-		System.out.println("Qual o tipo do ve√≠culo?");
+		System.out.println("Qual o tipo do veÌculo?");
 		System.out.println("1 - " + TipoVeiculo.CARRO.toString());
 		System.out.println("2 - " + TipoVeiculo.MOTOCICLETA.toString());
 		
-		System.out.println("Insira sua op√ß√£o: ");
+		System.out.println("Insira sua opÁ„o: ");
 		int tipoProduto = inputInt();
 		
 		switch (tipoProduto) {
@@ -80,7 +80,7 @@ public static TipoVeiculo inputTipoVeiculo() {
 		case 2:
 			return TipoVeiculo.MOTOCICLETA;
 		default:
-			System.out.println("Op√ß√£o inv√°lida. Tente novamente.");
+			System.out.println("OpÁ„o inv·lida . Tente novamente.");
 			inputTipoVeiculo();
 		}
 		return null;

@@ -1,7 +1,9 @@
 package collections;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
+import database.Database;
 import entities.Lance;
 import entities.Leilao;
 import entities.Produto;
@@ -9,6 +11,7 @@ import interfaces.CreateReadUpdateDelete;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import services.LeilaoComparatorId;
 
 @NoArgsConstructor
 @Getter
@@ -97,6 +100,14 @@ public class Lances implements CreateReadUpdateDelete {
 			return lances.remove(lances);
 		}
 		return false;
+	}
+	
+	public void retornarMaiorLance() {
+		if(Database.produtos.getProdutos().size() > 0) {
+			for (Produto produto : Database.produtos.getProdutos()) {
+				produto.getLances().getLances().getLast();
+			}
+		}
 	}
 	
 }

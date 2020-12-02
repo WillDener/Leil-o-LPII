@@ -25,7 +25,6 @@ public class Leilao implements Comparable {
 	private Produtos produtos;
 	private Clientes clientes;
 	private Instituicao instituicao;
-	private Lances lances;
 	private StatusLeilao statusLeilao = StatusLeilao.ABERTO;
 	
 	@Override
@@ -40,18 +39,16 @@ public class Leilao implements Comparable {
 			   "Quantidade de clientes registrados:" + getClientes().getClientes().size() + "\n" +
 			   "Lista de clientes: " + getClientes().toString() +
 			   "Instituicao financeira responsável: " + getInstituicao().toString() + "\n" +
-			   "Quantidade de lances registrados:" + getLances().getLances().size() + "\n" +
-			   "Lista de lances: " + getLances().toString() + "\n" +
 			   "Status do leilão: " + getStatusLeilao().toString() + ".";
 				if (getStatusLeilao().equals(StatusLeilao.FINALIZADO)) {
 					String resGanhador = "Ganhadores: " +"\n";
 					String resNA = "Produtos: " + "\n";
 					for (Produto produto : getProdutos().getProdutos()) {						
-						if (produto.getLance() != null) {
+						if (produto.getLances() != null) {
 							resGanhador = resGanhador + "\n" + 
 									"Produto: "+ produto.toString() +  "\n" +
-									"Cliente Ganhador: " + produto.getLance().getCliente().toString() +  "\n" +
-									"Valor: " + produto.getLance().getValor() +"\n\n" ;
+									"Cliente Ganhador: " + produto.getLances().getLances().getLast().getCliente().toString() +  "\n" +
+									"Valor: " + produto.getLances().getLances().getLast().getValor() +"\n\n" ;
 						} else {
 							resNA = resNA + "\n" + 
 									"lance: N/A \n";
@@ -63,13 +60,12 @@ public class Leilao implements Comparable {
 	}
 	
 	public Leilao(LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Produtos produtos, 
-				  Clientes clientes, Instituicao instituicao, Lances lances) {
+				  Clientes clientes, Instituicao instituicao) {
 		setDataHoraInicio(dataHoraInicio);
 		setDataHoraFim(dataHoraFim);
 		setProdutos(produtos);
 		setClientes(clientes);
 		setInstituicao(instituicao);
-		setLances(lances);
 		updateStatusLeilao();
 	}
 
@@ -99,13 +95,8 @@ public class Leilao implements Comparable {
 	
 	public void ganhadoresLeilao() {
 		try {
-			for (Lance lance : getLances().getLances()) {
-				Produto produto = (Produto) getProdutos().consultar(lance.getProduto().getMatricula());
-				if (produto != null) {
-					if(lance.getValor() > produto.getLance().getValor()) {
-						produto.setLance(lance);
-					}
-				}
+			for (Produto produto : getProdutos().getProdutos()) {
+				produto.ordenarLancesPeloValor();
 			}
 		} catch (Exception e) {
 			System.out.println("Falha ao realizar operação");

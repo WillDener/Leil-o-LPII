@@ -32,7 +32,9 @@ public class Veiculo extends Produto {
 		       "Cor do veículo: " + getCor() + ",\n" +
 		       "Descrição do veículo: " + getDescricao().toString() + ",\n" +
 		       "Valor mínimo do veículo: " + getValorMinimoProduto() + ",\n" +
-		       "Tipo do imóvel: " + getTipoVeiculo().toString()) + ".\n\n";
+		       "Tipo do imóvel: " + getTipoVeiculo().toString() + ",\n" + 
+		       "Quantidade Lances: " + getLances().getLances().size() + ",\n"+
+		       "Lances: " + getLances().getLances().toString()) + ".\n";
 	}
     
 }

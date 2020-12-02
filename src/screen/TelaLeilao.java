@@ -40,7 +40,7 @@ public class TelaLeilao {
 		do {
 			System.out.println("Escolha uma das operações abaixo:");
 			System.out.println("1 - Cadastrar Leilão");
-			System.out.println("1 - Vincular dados ao Leilão");
+			System.out.println("2 - Vincular dados ao Leilão");
 			System.out.println("3 - Registrar Lance em Leilão");
 			System.out.println("4 - Consultar leilão");
 			System.out.println("5 - Atualizar Leilão");
@@ -139,7 +139,6 @@ public class TelaLeilao {
 		
 		leilao.setClientes(new Clientes());
 		leilao.setProdutos(new Produtos());
-		leilao.setLances(new Lances());
 		leilao.updateStatusLeilao();
 		
 		return leilao;
@@ -191,12 +190,10 @@ public class TelaLeilao {
 	public void registrarLance() {
 		System.out.println("AVISO: Para registro de lance é necessario que os envolvidos já estejam registrados no leião pertencente!\n");
 		System.out.println("Informe qual leilão deseja registrar o lance: \n");
-		if (visualizarLeiloesAbertos()) {
-			visualizarLeiloesAbertos();
+		if (visualizarLeiloesAndamento()) {
+			visualizarLeiloesAndamento();
 			
-			System.out.println("Informe o id que deseja registrar o lance: ");
-			String id = EntradaDados.inputString();
-			Leilao leilaoVar = (Leilao) Database.leiloes.consultar(id);
+			System.out.println("Informe os dados para registrar o lance: ");			
 			
 			setConfirmacao(false);
 			while(!confirmacao) {
@@ -206,27 +203,27 @@ public class TelaLeilao {
 				String matricula = EntradaDados.inputString();
 				System.out.println("Informe o valor do lance: ");
 				Double valor = EntradaDados.inputDouble();
-				try {
-					leilaoVar.getLances().adicionar(new Lance(
-							(Cliente) leilaoVar.getClientes().consultar(cpf),
-							(Produto) leilaoVar.getProdutos().consultar(matricula),
-							valor));
-					setConfirmacao(Confirmacao.confirmar());
-				} catch (Exception e) {
-					System.out.println("Falha na operação, revise os dados informados e tente novamente!");
-					break;
-				}
+				Produto produto = (Produto) leilao.getProdutos().consultar(matricula);
+				if (produto == null) System.out.println("produto não encontrado");
+				Cliente cliente = (Cliente) leilao.getClientes().consultar(cpf);
+				if (cliente == null) System.out.println("cliente não encontrado");
+				produto.getLances().adicionar(new Lance(cliente, produto, valor));
+				
+				System.out.println(produto.toString());
+				System.out.println(cliente.toString());
+				
+				setConfirmacao(Confirmacao.confirmar());
 			}			
 		} else {
 			System.out.println("Nenhum leilão disponivel no momento!");
 		}				
 	}
 	
-	public Boolean visualizarLeiloesAbertos() {
+	public Boolean visualizarLeiloesAndamento() {
 		Boolean viu = false;
 		try {
 			for (Leilao leilao : Database.leiloes.getLeiloes()) {
-				if (leilao.getStatusLeilao().equals(StatusLeilao.ABERTO)) {
+				if (leilao.getStatusLeilao().equals(StatusLeilao.ANDAMENTO)) {
 					System.out.println(leilao.toString());
 					viu = true;
 				}
