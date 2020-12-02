@@ -44,7 +44,7 @@ public class Leilao implements Comparable {
 					String resGanhador = "Ganhadores: " +"\n";
 					String resNA = "Produtos: " + "\n";
 					for (Produto produto : getProdutos().getProdutos()) {						
-						if (produto.getLances() != null) {
+						if (produto.getLances().getLances().size() > 0) {
 							resGanhador = resGanhador + "\n" + 
 									"Produto: "+ produto.toString() +  "\n" +
 									"Cliente Ganhador: " + produto.getLances().getLances().getLast().getCliente().toString() +  "\n" +
@@ -53,6 +53,8 @@ public class Leilao implements Comparable {
 							resNA = resNA + "\n" + 
 									"lance: N/A \n";
 						}
+						
+						
 					}
 					dadosLeilao = dadosLeilao + resGanhador + resNA;
 				}

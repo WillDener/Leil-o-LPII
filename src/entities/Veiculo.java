@@ -31,7 +31,7 @@ public class Veiculo extends Produto {
 		       "Kilometragem rodada: " + getKilometragem() + ",\n" +
 		       "Cor do veículo: " + getCor() + ",\n" +
 		       "Descrição do veículo: " + getDescricao().toString() + ",\n" +
-		       "Valor mínimo do veículo: " + getValorMinimoProduto() + ",\n" +
+		       "Valor mínimo do veículo: " + String.format("%.2f", getValorMinimoProduto()) + ",\n" +
 		       "Tipo do imóvel: " + getTipoVeiculo().toString() + ",\n" + 
 		       "Quantidade Lances: " + getLances().getLances().size() + ",\n"+
 		       "Lances: " + getLances().toString()) + ".\n";

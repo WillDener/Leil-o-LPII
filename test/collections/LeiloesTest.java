@@ -12,6 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import database.Database;
 import entities.Cliente;
 import entities.Imovel;
 import entities.Instituicao;
@@ -42,15 +43,8 @@ public class LeiloesTest {
 	private Cliente cliente2;
 	
 	private Instituicao instituicao;
-	
-	private Lances lances;
-	
-	private Lance lance1;
-	private Lance lance2;
-	private Lance lance3;
-	private Lance lance4;
-	private Lance lance5;
-	private Lance lance6;
+
+	private Database database = new Database();
 	
 	@Before
 	public void init() {
@@ -80,28 +74,13 @@ public class LeiloesTest {
 		clientes.adicionar(cliente2);
 		
 		instituicao = new Instituicao("0001123456", "IBGEF", "Avenida nilda", "a@a.com");
-		
-		lance1 = new Lance(cliente1, imovel1, 200000.00);
-		lance2 = new Lance(cliente2, imovel2, 200000.00);
-		lance3 = new Lance(cliente1, imovel3, 200000.00);
-		lance4 = new Lance(cliente2, imovel4, 200000.00);
-		lance5 = new Lance(cliente1, veiculo1, 200000.00);
-		lance6 = new Lance(cliente2, veiculo2, 200000.00);
-		
-		lances = new Lances();
-		lances.adicionar(lance1);
-		lances.adicionar(lance2);
-		lances.adicionar(lance3);
-		lances.adicionar(lance4);
-		lances.adicionar(lance5);
-		lances.adicionar(lance6);
 	}
 	
 	@Test
 	public void validarStatusLeilaoAberto() {
 		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
-		Leilao leilao = new Leilao(now.plusMinutes(5), now.plusMinutes(10), produtos, clientes, instituicao, lances);
+		Leilao leilao = new Leilao(now.plusMinutes(5), now.plusMinutes(10), produtos, clientes, instituicao);
 		Assert.assertEquals(StatusLeilao.ABERTO, leilao.getStatusLeilao());
 	}
 	
@@ -109,7 +88,7 @@ public class LeiloesTest {
 	public void validarStatusLeilaoAndamento() {
 		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
-		Leilao leilao = new Leilao(now, now.plusMinutes(10), produtos, clientes, instituicao, lances);
+		Leilao leilao = new Leilao(now, now.plusMinutes(10), produtos, clientes, instituicao);
 		Assert.assertEquals(StatusLeilao.ANDAMENTO, leilao.getStatusLeilao());
 	}
 	
@@ -117,7 +96,7 @@ public class LeiloesTest {
 	public void validarStatusLeilaoFechado() {
 		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
-		Leilao leilao = new Leilao(now.minusMinutes(10), now.minusMinutes(5), produtos, clientes, instituicao, lances);
+		Leilao leilao = new Leilao(now.minusMinutes(10), now.minusMinutes(5), produtos, clientes, instituicao);
 		Assert.assertEquals(StatusLeilao.FINALIZADO, leilao.getStatusLeilao());
 	}
 	
@@ -125,8 +104,8 @@ public class LeiloesTest {
 	public void validarAdicionarLeilao() {
 		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
-		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao, lances);
-		Leilao leilao2 = new Leilao(now, now, produtos, clientes, instituicao, lances);
+		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao);
+		Leilao leilao2 = new Leilao(now, now, produtos, clientes, instituicao);
 		
 		Leiloes leiloes = new Leiloes();
 		leiloes.adicionar(leilao1);
@@ -139,7 +118,7 @@ public class LeiloesTest {
 	public void validarAdicionarRepetido() {
 		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
-		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao, lances);
+		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao);
 		
 		Leiloes leiloes = new Leiloes();
 
@@ -166,8 +145,8 @@ public class LeiloesTest {
 		
 		Instituicao instituicaoNova = new Instituicao("0001123456789", "Nova", "Rua do céu", "email@email.com");
 		
-		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao, lances);
-		Leilao leilao2 = new Leilao(now.plusMinutes(5), now.plusMinutes(10), produtos, clientes, instituicaoNova, lances);
+		Leilao leilao1 = new Leilao(now, now, produtos, clientes, instituicao);
+		Leilao leilao2 = new Leilao(now.plusMinutes(5), now.plusMinutes(10), produtos, clientes, instituicaoNova);
 		
 		Leiloes leiloes = new Leiloes();
 		leiloes.adicionar(leilao1);
@@ -183,25 +162,24 @@ public class LeiloesTest {
 	
 	@Test
 	public void validarOrdernarLeilaoDataId() {
+				
 		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		
-		Leilao leilao1 = new Leilao(now.minusDays(10).minusHours(5), now.minusDays(10), produtos, clientes, instituicao, lances);
-		Leilao leilao2 = new Leilao(now.minusDays(10).minusHours(10), now.minusDays(10), produtos, clientes, instituicao, lances);
+		Leilao leilao1 = new Leilao(now.minusDays(10).minusHours(5), now.minusDays(10), produtos, clientes, instituicao);
+		Leilao leilao2 = new Leilao(now.minusDays(10).minusHours(10), now.minusDays(10), produtos, clientes, instituicao);
 		
-		Leiloes leiloes = new Leiloes();
-		leiloes.adicionar(leilao1);
-		leiloes.adicionar(leilao2);
+		database.leiloes.adicionar(leilao1);
+		database.leiloes.adicionar(leilao2);
 		
-		LinkedList<Leilao> leiloesOrdenadoData = leiloes.ordenarLeiloesPorData();
+		database.leiloes.toString();
 		
-		Assert.assertEquals("2", leiloesOrdenadoData.get(0).getId());
+		database.leiloes.ordenarLeiloesPorData();
 		
-		Leiloes leiloesData = new Leiloes();
-		leiloesData.setLeiloes(leiloesOrdenadoData);
+		Assert.assertEquals("2", database.leiloes.getLeiloes().getFirst().getId());
 		
-		LinkedList<Leilao> leiloesOrdenadoId = leiloesData.ordenarLeiloesPeloId();
+		database.leiloes.ordenarLeiloesPeloId();
 		
-		Assert.assertEquals("1", leiloesOrdenadoId.get(0).getId());
+		Assert.assertEquals("1", database.leiloes.getLeiloes().getFirst().getId());
 		
 	}
 	

@@ -26,7 +26,7 @@ public class Imovel extends Produto {
 		return("Matrícula do imóvel: " + getMatricula() + ",\n" +
 			   "Endereço do imóvel: " + getEndereco() + ",\n" +
 		       "Descrição do imóvel: " + getDescricao() + ",\n" +
-		       "Valor mínimo do imóvel: " + getValorMinimoProduto() + ",\n" +
+		       "Valor mínimo do imóvel: " + String.format("%.2f", getValorMinimoProduto()) + ",\n" +
 		       "Tipo do imóvel: " + getTipoImovel().toString() + ",\n"+
 		       "Quantidade Lances: " + getLances().getLances().size() + ",\n"+
 		       "Lances: " + getLances().toString()) + ".\n";
